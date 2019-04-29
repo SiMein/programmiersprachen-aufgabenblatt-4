@@ -1,18 +1,22 @@
-// Vec2 definition
-struct Vec2
-{
-// ...
-Vec2 & operator +=( Vec2 const & v);
-Vec2 & operator -=( Vec2 const & v);
-Vec2 & operator *=( float s);
-Vec2 & operator /=( float s);
-// ...
-};
+#include "vec2.hpp"
 
-Fügen Sie ihre Dateien und Änderungen zu git hinzu:
-
-git add source / vec2 .hpp source / vec2 .cpp
-git commit -m "Add Vec2 definition "
-git add source / tests .cpp source / CMakeLists .txt
-git commit -m "Add tests for Vec2
-[
+Vec2& Vec2::operator +=( Vec2 const & v){
+    x = x+v.x;
+    y = y+v.y;
+    return *this;
+}
+Vec2& Vec2::operator -=( Vec2 const & v){
+    x = x-v.x;
+    y = y-v.y;
+    return *this;
+}
+Vec2& Vec2::operator *=( float s){
+    x = x*s;
+    y = y*s;
+    return *this;
+}
+Vec2& Vec2::operator /=( float s){
+    x = x/s;
+    y = y/s;
+    return *this;
+}
