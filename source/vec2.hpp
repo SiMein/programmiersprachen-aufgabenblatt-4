@@ -4,8 +4,8 @@
 // Vec2 data type definition
 struct Vec2
 {
-    float x;
-    float y;
+    float x = 0.0f;
+    float y = 0.0f;
 /* TODO add member variables with
 default member initialisation */
 };

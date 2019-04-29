@@ -24,4 +24,5 @@ target_link_libraries(tests
   ${OPENGL_LIBRARIES}
   )
 
+add_executable(my_test_field.cpp my_test_field)
 
