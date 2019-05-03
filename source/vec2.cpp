@@ -1,7 +1,7 @@
 #include "vec2.hpp"
 #include <iostream>
 
-Vec2& Vec2::operator +=( Vec2 const & v){
+Vec2& Vec2::operator +=( Vec2 const & v){   //Memberfunktion (in .cpp mit Konstr) !!
     x = x+v.x;
     y = y+v.y;
     return *this;
@@ -27,7 +27,7 @@ Vec2& Vec2::operator /=( float s){
     return *this;
 }
 
-Vec2 operator +( Vec2 const& u, Vec2 const& v){
+Vec2 operator +( Vec2 const& u, Vec2 const& v){   //  Freie Funktion (in .cpp mit Konstr)
     return Vec2{u}+=v;
 }
 
