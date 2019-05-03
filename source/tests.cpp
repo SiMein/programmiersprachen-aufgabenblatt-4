@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
-#include "vec2.hpp"
+#include "vec2.hpp"             // Frage -warum bei tests im header nur die hpps includen ?
+#include "mat2.hpp"
 #include <iostream>
 
 
@@ -92,6 +93,29 @@ TEST_CASE("vec2", "[vec2]")
   lll=-1.0f*kkk;
   REQUIRE(lll.x == Approx(-4.0f));
   REQUIRE(lll.y == Approx(-8.0f));
+
+}
+
+TEST_CASE("mat2", "[mat2]"){
+
+  Mat2 mx_1{};
+  Mat2 mx_2{};
+  
+  mx_1 *= mx_2;
+  REQUIRE(mx_1.e_00 == Approx(1.0f));
+  REQUIRE(mx_1.e_01 == Approx(0.0f));
+  REQUIRE(mx_1.e_10 == Approx(0.0f));
+  REQUIRE(mx_1.e_11 == Approx(1.0f));
+
+
+  Mat2 mx_3{};
+  
+  mx_3 = mx_1*mx_2;
+  REQUIRE(mx_3.e_00 == Approx(1.0f));
+  REQUIRE(mx_3.e_01 == Approx(0.0f));
+  REQUIRE(mx_3.e_10 == Approx(0.0f));
+  REQUIRE(mx_3.e_11 == Approx(1.0f));
+
 
 }
 
