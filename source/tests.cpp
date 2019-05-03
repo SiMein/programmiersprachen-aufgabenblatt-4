@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 #include "vec2.hpp"
+#include <iostream>
 
 
 TEST_CASE("vec2", "[vec2]")
@@ -41,6 +42,12 @@ TEST_CASE("vec2", "[vec2]")
   ll /= 5.0f;                          // Div
   REQUIRE(ll.x == Approx(4.0f));
   REQUIRE(ll.y == Approx(3.0f));
+  
+
+  ll /= 0;
+  REQUIRE(ll.x == Approx(4.0));
+  REQUIRE(ll.y== Approx(3.0));
+
 
 
 
