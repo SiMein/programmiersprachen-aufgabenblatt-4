@@ -18,6 +18,13 @@ struct Vec2
 default member initialisation */
 };
 
+// hier freie Fnktion für Vektoren , da NICHT in den geschweiften Klammern oben
+Vec2 operator +( Vec2 const& u, Vec2 const& v);
+Vec2 operator -( Vec2 const& u, Vec2 const& v);
+Vec2 operator *( Vec2 const& v, float s);
+Vec2 operator /( Vec2 const& v, float s);
+Vec2 operator *( float s, Vec2 const& v);  //Multipl 2fach angeben wegen der richtung
+
 
 
 # endif // VEC2_HPP
