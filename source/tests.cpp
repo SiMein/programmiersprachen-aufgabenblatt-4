@@ -15,7 +15,7 @@ TEST_CASE("vec2", "[vec2]")
   REQUIRE(b.x == Approx(5.1f));  //Attributzugriffckeck -custom
   REQUIRE(b.y == Approx(-9.3f));
 
-  Vec2 c{2.0f, 3.0f};
+  Vec2 c{2.0f, 3.0f};         //  Memberfunktionen Operatoren !!!
 
   a+=c;                          // Vektoraddition
   REQUIRE(c.x == Approx(2.0f));
@@ -45,28 +45,47 @@ TEST_CASE("vec2", "[vec2]")
 
 
 
+Vec2 aaa{5.0f,6.0f};    // Freie Funktionen für Operatoren  !!!
+Vec2 bbb{3.0f,4.0f};
+Vec2 ccc{};
+
+ccc=aaa+bbb;
+REQUIRE(ccc.x == Approx(8.0f));
+REQUIRE(ccc.y == Approx(10.0f));
 
 
+Vec2 ddd{10.0f,15.0f};
+Vec2 eee{11.0f,16.0};
+Vec2 fff{};
 
-  //Vec2 d {4.0f, 8.0f};           
-  //Vec3 e {1.0f, 1.0f};
-  
-  //d-=e;
-  //REQUIRE(d.x == Approx(-4.0f));
-  //REQUIRE(d.y == Approx(-8.0f));
-
-  
-
-  //a-=d;                
-  //REQUIRE(b.x == Approx(-4.0f));
-  //REQUIRE(b.y == Approx(-8.0f));
+fff=ddd-eee;
+REQUIRE(fff.x == Approx(-1.0f));
+REQUIRE(fff.y == Approx(-1.0f));
 
 
-//  Vec2 e {2.0f, 3.0f};
+Vec2 ggg{42.0f,48.0f};
+Vec2 hhh{};
 
-  
-  //REQUIRE(b.*=c == Approx(-9.3f));
-  //REQUIRE(b./=c == Approx(-9.3f));
+hhh=ggg*-1.0f;
+REQUIRE(hhh.x == Approx(-42.0f));
+REQUIRE(hhh.y == Approx(-48.0f));
+
+
+Vec2 iii{33.0f,34.0f};
+Vec2 jjj{};
+
+jjj=iii/-2.0f;
+
+REQUIRE(jjj.x == Approx(-16.5f));
+REQUIRE(jjj.y == Approx(-17.0f));
+
+ 
+Vec2 kkk{4.0f,8.0f};
+Vec2 lll{};
+
+lll=-1.0f*kkk;
+REQUIRE(lll.x == Approx(-4.0f));
+REQUIRE(lll.y == Approx(-8.0f));
 
 }
 
