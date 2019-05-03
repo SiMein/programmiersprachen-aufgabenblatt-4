@@ -117,6 +117,35 @@ TEST_CASE("mat2", "[mat2]"){
   REQUIRE(mx_3.e_11 == Approx(1.0f));
 
 
+  Mat2 mx_4{};
+  Mat2 mx_5{0.0f,0.0f,0.0f,0.0f};
+ 
+  mx_4 = mx_4*=mx_5;
+  REQUIRE(mx_4.e_00 == Approx(0.0f));
+  REQUIRE(mx_4.e_01 == Approx(0.0f));
+  REQUIRE(mx_4.e_10 == Approx(0.0f));
+  REQUIRE(mx_4.e_11 == Approx(0.0f));
+  
+  
+  Mat2 mx_8{};
+
+  Mat2 mx_6{-1.0f,3.0f,2.0f,4.0f};
+  Mat2 mx_7{5.0f,7.0f,6.0f,8.0f};
+  
+  mx_8 = mx_6 * mx_7;
+
+  REQUIRE(mx_8.e_00 == Approx(9.0f));
+  REQUIRE(mx_8.e_01 == Approx(10.0f));
+  REQUIRE(mx_8.e_10 == Approx(43.0f));
+  REQUIRE(mx_8.e_11 == Approx(50.0f));
+
+
+  /*
+  std::cout << mx_8.e_00 << "\n";
+  std::cout << mx_8.e_01 << "\n";
+  std::cout << mx_8.e_10 << "\n";
+  std::cout << mx_8.e_11 << "\n";
+  */
 }
 
 int main(int argc, char *argv[])
