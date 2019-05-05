@@ -3,6 +3,7 @@
 #include "vec2.hpp"            
 #include "mat2.hpp"
 #include "color.hpp"
+#include "window.hpp"
 #include <iostream>
 
 
@@ -10,10 +11,12 @@
 
 class Circle {
 public:
-    Circle(); //default -Init der privat Attrib. ??
-    Circle(Vec2 const& ctr, float r, Color const& rgb);  // Custum-Init    
-            // ACHTUNG - gleiche Signatur inkl const und & in cpp erstellen  
-    float circumference() const;             
+    Circle();                                //default -Init der privat Attrib. ??
+    Circle(Vec2 const& ctr, float r, Color const& rgb);  // Custum-Init  ACHTUNG - gleiche Signatur inkl const und & in cpp erstellen  
+    float circumference() const; 
+    void draw(Window const& w)const; 
+
+
 /*
     Circle(Circle const& c);
     Circle(Point2D const& ctr, float r, ColorRGB const& rgb);

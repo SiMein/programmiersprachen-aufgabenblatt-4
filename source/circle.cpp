@@ -12,82 +12,18 @@ Circle::Circle():
 Circle::Circle(Vec2 const& ctr, float r, Color const& rgb) :  // check übergabearten !!  Gleiche Signatur in hpp !!
   center_{ctr},
   radius_{r},
-  color_ {rgb} {}
+  color_{rgb} {}
 
 float Circle::circumference() const{
     float u = 2*M_PI * radius_;
     return u;
 }
+void Circle::draw(Window const& w) const{
+
+}
 
 
 /*
-Circle::Circle(Circle const& c) :
-  name_  {"copy_of_" + c.name_},
-  center_{c.center_},
-  radius_{c.radius_},
-  color_ {c.color_} {}
-
-Circle::Circle(std::string const& name, Point2D const& ctr, float r, ColorRGB const& rgb) :
-  name_  {name},
-  center_{ctr},
-  radius_{r},
-  color_ {rgb} {}
-
-Circle::~Circle() {
-  std::cout << "destructor() -> name: " << name_
-  << " destroyed" << std::endl;
-}
-Circle& Circle::operator=(Circle const& c) {
-  name_   = name_ + "_assigned_from_" + c.name_;
-  center_ = c.center_;
-  radius_ = c.radius_;
-  color_  = c.color_;
-  return *this;
-}
-
-float Circle::area() const {
-  return M_PI * radius_ * radius_;
-}
-
-float Circle::diameter() const {
-  return 2 * radius_;
-}
-
-
-BBox Circle::bounding_box() const {
-  return {{center_.x - radius_, center_.y - radius_}, {center_.x + radius_, center_.y + radius_}};
-}
-
-
-void Circle::color(ColorRGB const& clr) {
-  color_ = clr;
-}
-
-
-ColorRGB Circle::color() const {
-  return color_;
-}
-
-
-void Circle::center(Point2D const& ctr) {
-  center_ = ctr;
-}
-
-
-Point2D Circle::center() const {
-  return center_;
-}
-
-
-float Circle::radius() const {
-  return radius_;
-}
-
-
-void Circle::radius(float r) {
-  radius_ = r;
-}
-
 
 void Circle::draw() const {
   std::cout << "draw() -> name: "   << name_
