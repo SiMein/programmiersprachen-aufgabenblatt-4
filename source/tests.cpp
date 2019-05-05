@@ -147,7 +147,7 @@ TEST_CASE("mat2", "[mat2]"){
   REQUIRE(mx_8.det() == Approx(20.0f));
   
 
-  Mat2 to_inv{-1.0f,2.0f,3.0f,-2.0f};
+  Mat2 to_inv{-1.0f,2.0f,3.0f,-2.0f};   // Matrix invert
   Mat2 inv = inverse(to_inv);
  
   REQUIRE(inv.e_00 == Approx(0.5f));
@@ -155,6 +155,19 @@ TEST_CASE("mat2", "[mat2]"){
   REQUIRE(inv.e_10 == Approx(0.75f));
   REQUIRE(inv.e_11 == Approx(0.25f));
 
+  Mat2 to_trans{-1.0f,2.0f,3.0f,-4.0f};   // Matrix transpose
+  Mat2 trans = transpose(to_trans);
+
+  REQUIRE (trans.e_10 == Approx(3.0));
+  REQUIRE (trans.e_01 == Approx(2.0));
+
+  Vec2 aaaa{0.0f,0.0f};                   // // Matrix rotate
+  Vec2 bbbb{1.0f,1.0f};
+  Mat2 mmmm = make_rotation_mat2(M_PI/2);
+  REQUIRE(mmmm.e_00 == Approx(0.0f));
+  REQUIRE(mmmm.e_01 == Approx(1.0f));
+  REQUIRE(mmmm.e_10 == Approx(-1.0f));
+  REQUIRE(mmmm.e_11 == Approx(0.0f));
   
 /*
   Mat2 matr1{3.0f,-1.0f,0.0f,3.0f};     //Vekt * Matr  Multipl   FEHLER !!!!!!!!!!!!!!!!!!!!
