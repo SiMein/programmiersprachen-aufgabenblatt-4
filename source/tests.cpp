@@ -2,6 +2,8 @@
 #include <catch.hpp>
 #include "vec2.hpp"             // Frage -warum bei tests im header nur die hpps includen ?
 #include "mat2.hpp"
+#include "circle.hpp"
+#include "rectangle.hpp"
 #include <iostream>
 
 
@@ -21,31 +23,31 @@ TEST_CASE("vec2", "[vec2]")
 
   Vec2 c{2.0f, 3.0f};         //  Memberfunktionen Operatoren !!!
 
-  a+=c;                          // Vektoraddition
+  a+=c;                          // Vek.-addition
   REQUIRE(c.x == Approx(2.0f));
   REQUIRE(c.y == Approx(3.0f));
                             
 
   Vec2 ii{5.0f, 8.0f};
   Vec2 jj{2.0f, 3.0f};
-  ii-=jj;                          // Vektorsubtraktion
+  ii-=jj;                          // Vek.-subtraktion
   REQUIRE(ii.x == Approx(3.0f));
   REQUIRE(ii.y == Approx(5.0f));
 
 
   Vec2 kk{5.0f, 8.0f};
-  kk *= 5.0f;                          // Multipl
+  kk *= 5.0f;                          // Vek.-Multipl
   REQUIRE(kk.x == Approx(25.0f));
   REQUIRE(kk.y == Approx(40.0f));
 
 
   Vec2 ll{20.0f, 15.0f};
-  ll /= 5.0f;                          // Div
+  ll /= 5.0f;                          // Vek.-Div
   REQUIRE(ll.x == Approx(4.0f));
   REQUIRE(ll.y == Approx(3.0f));
   
 
-  ll /= 0;
+  ll /= 0;                            // Div by 0
   REQUIRE(ll.x == Approx(4.0));
   REQUIRE(ll.y== Approx(3.0));
 
@@ -56,7 +58,7 @@ TEST_CASE("vec2", "[vec2]")
   Vec2 bbb{3.0f,4.0f};
   Vec2 ccc{};
 
-  ccc=aaa+bbb;
+  ccc=aaa+bbb;                          //Vek.-Add
   REQUIRE(ccc.x == Approx(8.0f));
   REQUIRE(ccc.y == Approx(10.0f));
 
@@ -65,7 +67,7 @@ TEST_CASE("vec2", "[vec2]")
   Vec2 eee{11.0f,16.0};
   Vec2 fff{};
 
-  fff=ddd-eee;
+  fff=ddd-eee;                        //Vek.-Subktr.
   REQUIRE(fff.x == Approx(-1.0f));
   REQUIRE(fff.y == Approx(-1.0f));
 
@@ -73,7 +75,7 @@ TEST_CASE("vec2", "[vec2]")
   Vec2 ggg{42.0f,48.0f};
   Vec2 hhh{};
 
-  hhh=ggg*-1.0f;
+  hhh=ggg*-1.0f;                      // Vek.-Multip.
   REQUIRE(hhh.x == Approx(-42.0f));
   REQUIRE(hhh.y == Approx(-48.0f));
 
@@ -81,7 +83,7 @@ TEST_CASE("vec2", "[vec2]")
   Vec2 iii{33.0f,34.0f};
   Vec2 jjj{};
 
-  jjj=iii/-2.0f;
+  jjj=iii/-2.0f;                    // Vek.-Div
 
   REQUIRE(jjj.x == Approx(-16.5f));
   REQUIRE(jjj.y == Approx(-17.0f));
@@ -99,16 +101,16 @@ TEST_CASE("vec2", "[vec2]")
 TEST_CASE("mat2", "[mat2]"){
 
   Mat2 mx_1{};
-  Mat2 mx_2{};
+  Mat2 mx_2{};                        
   
-  mx_1 *= mx_2;
+  mx_1 *= mx_2;                       //Mat-Multipl. (Menberfkt)
   REQUIRE(mx_1.e_00 == Approx(1.0f));
   REQUIRE(mx_1.e_01 == Approx(0.0f));
   REQUIRE(mx_1.e_10 == Approx(0.0f));
   REQUIRE(mx_1.e_11 == Approx(1.0f));
 
 
-  Mat2 mx_3{};
+  Mat2 mx_3{};                        //Mat-Multipl. (Freie Fkt)
   
   mx_3 = mx_1*mx_2;
   REQUIRE(mx_3.e_00 == Approx(1.0f));
@@ -131,6 +133,7 @@ TEST_CASE("mat2", "[mat2]"){
 
   Mat2 mx_6{-1.0f,3.0f,2.0f,4.0f};
   Mat2 mx_7{5.0f,7.0f,6.0f,8.0f};
+
   
   mx_8 = mx_6 * mx_7;
 
@@ -140,12 +143,73 @@ TEST_CASE("mat2", "[mat2]"){
   REQUIRE(mx_8.e_11 == Approx(50.0f));
 
 
+  REQUIRE(mx_4.det() == Approx(0.0f));
+  REQUIRE(mx_8.det() == Approx(20.0f));
+  
+
+  Mat2 to_inv{-1.0f,2.0f,3.0f,-2.0f};
+  Mat2 inv = inverse(to_inv);
+ 
+  REQUIRE(inv.e_00 == Approx(0.5f));
+  REQUIRE(inv.e_01 == Approx(0.5f));
+  REQUIRE(inv.e_10 == Approx(0.75f));
+  REQUIRE(inv.e_11 == Approx(0.25f));
+
+  
+/*
+  Mat2 matr1{3.0f,-1.0f,0.0f,3.0f};     //Vekt * Matr  Multipl   FEHLER !!!!!!!!!!!!!!!!!!!!
+  Vec2 vect1{2.0f,-4.0f};
+  
+  Vec2 vect2 = matr1*vect1;
+  REQUIRE(vect2.x == Approx(6.0f));
+  REQUIRE(vect2.y == Approx(-14.0f));
+
+  std::cout << vect2.x << "\n";
+  std::cout << vect2.y << "\n";
   /*
+
+
   std::cout << mx_8.e_00 << "\n";
   std::cout << mx_8.e_01 << "\n";
   std::cout << mx_8.e_10 << "\n";
   std::cout << mx_8.e_11 << "\n";
   */
+}
+
+TEST_CASE("circle", "[circle]"){
+
+  Circle circ1;           // Default-circumference
+
+  float c_1 = circ1.circumference();
+  REQUIRE(c_1 == Approx(6.28319f));
+
+ 
+  Vec2 v_5{9};            // Custum-circumference
+  float ra_1 = 9.0f;
+  Color co_5{};
+
+  Circle circ2{v_5,ra_1,co_5};
+
+  float c_5 = circ2.circumference();
+  REQUIRE(c_5 == Approx(56.549));
+
+}
+
+TEST_CASE("rectangle", "[rectangle]"){
+
+  Rectangle rect1;        // Default-circumference
+
+  float r_1 = rect1.circumference();
+  REQUIRE(r_1 == Approx(20.0f));
+
+  Color co_1;           // Custum-circumference
+  Vec2 v_1{1,1};
+  Vec2 v_2{5,5};
+  Rectangle rect2{v_1,v_2,co_1}; 
+  
+  float r_2 = rect2.circumference();
+  REQUIRE(r_2 == Approx(16.0));
+
 }
 
 int main(int argc, char *argv[])
