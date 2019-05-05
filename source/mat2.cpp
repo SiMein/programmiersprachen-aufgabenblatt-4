@@ -1,6 +1,8 @@
 #include "mat2.hpp"
 #include "vec2.hpp"
 #include <iostream>
+#include <cmath>
+
 // TODO (in mat2 .cpp ) Definition v. operator *=
 
 Mat2& Mat2::operator *=( Mat2 const& m){   // Memberfunktion (in .cpp mit Konstr)!!
@@ -54,10 +56,15 @@ Mat2 inverse ( Mat2 const & m){
     }
 };
 Mat2 transpose ( Mat2 const & m){
+    Mat2 temp{m};
+    temp.e_01 = m.e_10;
+    temp.e_10 = m.e_01;
+    return temp;
 
 };
 Mat2 make_rotation_mat2 ( float phi ){
-
+    Mat2 result {std::cos(phi), -std::sin(phi), std::sin(phi), std::cos(phi)};
+    return result;
 };
 
 // TODO (in mat2 .cpp ) Definition v. operator *
