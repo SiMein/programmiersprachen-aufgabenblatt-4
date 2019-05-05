@@ -2,11 +2,48 @@
 #include <GLFW/glfw3.h>
 #include <utility>
 #include <cmath>
+#include "circle.hpp"
+#include "rectangle.hpp"
+#include "color.hpp"
 
 
 int main(int argc, char* argv[])
 {
   Window win{std::make_pair(800,800)};
+
+
+  
+  Vec2 min{100.0f, 200.0f};
+  Vec2 max{300.0f, 400.0f};
+
+
+  
+/*  Vec2 ctr{600.0f, 600.0f};
+  Vec2 ctr_2{300.0f, 300.0f};
+  Vec2 second{0.0f, -350.0f};
+  Vec2 minute{0.0f, -275.0f};
+  Vec2 hour{0.0f, -200.0f};
+
+  Color col{0.0f, 0.9f, 0.5f};
+  Color clr{153.0f/255.0f,50.0f/255.0f,204.0f/255.0f};
+
+  Rectangle rec{};
+  Rectangle rec_2{min, max, clr};
+
+  Circle cir{};
+  Circle cir_2{150.0f, ctr, clr};
+  Circle cir_3{50.0f, ctr_2, clr};
+
+  std::vector<Rectangle>rectangles;
+  std::vector<Circle>circles;
+
+  rectangles.push_back(rec);
+  rectangles.push_back(rec_2);
+
+  circles.push_back(cir);
+  circles.push_back(cir_2);
+  circles.push_back(cir_3);
+*/
 
   while (!win.should_close()) {
     if (win.get_key(GLFW_KEY_ESCAPE) == GLFW_PRESS) {
