@@ -3,6 +3,7 @@
 #include "vec2.hpp"            
 #include "mat2.hpp"
 #include "color.hpp"
+#include "window.hpp"
 #include <iostream>
 
 
@@ -13,6 +14,8 @@ public:
     Rectangle(); //default -Init der privat Attrib. ??
     Rectangle(Vec2 const& mi, Vec2 const& ma, Color const& rgb);  // Custum-Init
     float circumference() const; 
+    void draw(Window const& w)const;
+    void draw(Window const& w, float thickness) const;
 
 private:
     Vec2  min_;
