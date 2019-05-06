@@ -20,25 +20,26 @@ float Circle::circumference() const{
 }
 void Circle::draw(Window const& w) const{
 
+    Vec2 sp{center_.x, center_.y - radius_};  //startpoint 
+    for(int i = 0; i < 100; ++i){
+        float rot = ((2 * M_PI)/100);                //rotation-Var.
+        Mat2 rm = make_rotation_mat2(rot);           //Rotation
+        Vec2 np = center_ + (rm * (sp - center_));   //neuer punkt
+        w.draw_line(sp.x, sp.y, np.x, np.y, color_.r,color_.g,color_.b);
+        sp = np;  // Übergabe nächster Startpoint 
+    }
 }
 
-
+//void draw(Window const& win, float thickness) const{
+ // }
 /*
-
-void Circle::draw() const {
-  std::cout << "draw() -> name: "   << name_
-  << "  center: {" << center_.x << ", " << center_.y << "}"
-  << "  radius: "  << radius_
-  << "  color: {"  << color_.r  << ", " << color_.g  << ", " << color_.b << "}"
-  << std::endl;
-}
-
-// free function comparing two circles based on their area
-bool smaller  (Circle const& lhs_c, Circle const& rhs_c) {
-  return lhs_c.area() < rhs_c.area();
-}
-
-bool operator<(Circle const& lhs_c, Circle const& rhs_c) {
-  return lhs_c.area() < rhs_c.area();
+   Vec2 sp{center_.x, center_.y - radius_};  //startpoint 
+    for(int i = 0; i < 100; ++i){
+        float rot = ((2 * M_PI)/100);                //rotation-Var.
+        Mat2 rm = make_rotation_mat2(rot);           //Rotation
+        Vec2 np = center_ + (rm * (sp - center_));   //neuer punkt
+        w.draw_line(sp.x, sp.y, np.x, np.y, color_.r,color_.g,color_.b);
+        sp = np;  // Übergabe nächster Startpoint 
+    }
 }
 */
