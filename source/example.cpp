@@ -35,10 +35,10 @@ int main(int argc, char* argv[])
     Color c_6 = {0.4f, 0.2f, 0.3f};
 
              // error: no matching function for call to ‘Rectangle::Rectangle(<brace-enclosed initializer list>)’                      
-    Rectangle r_4{v_5,v_1,c_5};   //zusätzlicher wert für thickness am ende wird nicht richtig erkannt
+    Rectangle r_4{v_5,v_1,c_5,20.0f};   //zusätzlicher wert für thickness am ende wird nicht richtig erkannt
     r_4.draw(win);
 
-    Circle cir_3{v_5,20.0f,c_6};  // (Param.-center,radius,color)
+    Circle cir_3{v_5,20.0f,c_6,50.0};  // (Param.-center,radius,color)
     cir_3.draw(win);
 
 
