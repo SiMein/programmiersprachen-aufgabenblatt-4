@@ -16,6 +16,7 @@ public:
     float circumference() const; 
     void draw(Window const& w)const;
     void draw(Window const& w, float thickness) const;
+    bool is_inside(Vec2 const& p) const;
 
 private:
     Vec2  min_;

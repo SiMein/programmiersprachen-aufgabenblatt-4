@@ -38,16 +38,13 @@ void Rectangle::draw(Window const& w, float thickness)const{
         w.draw_line(max_.x, min_.y, max_.x, max_.y, color_.r, color_.g, color_.b, thickness);   
     }
 } 
-
-/*
-Circle::Circle():
-                             //name_  {"Circle_default_constructed"},
-  center_{0.0f, 0.0f},
-  radius_{1.0f},
-  color_ {0.5f, 0.5f, 0.5f} {}  // Wozu weitere geschweifte KLammer hier ???
-                                // Warum hier Kommata statt Semikolon ?
-
-Circle::Circle(Vec2 const& ctr, float r, Color const& rgb) :  // check übergabearten !!
-  center_{ctr},
-  radius_{r},
-  color_ {rgb} {}     */
+bool Rectangle::is_inside(Vec2 const& p) const{
+    if(p.x < max_.x && p.y < max_.y && p.x > min_.x && p.y > min_.y){
+        //std::cout << "Point is in Object.\n";
+        return true;
+    }
+    else{
+        //std::cout << "Point outside from object.\n";
+        return false;
+    }
+}
