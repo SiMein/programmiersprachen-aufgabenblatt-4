@@ -29,9 +29,8 @@ void Circle::draw(Window const& w) const{
         sp = np;  // Übergabe nächster Startpoint 
     }
 }
-//void draw(Window const& win, float thickness) const{
- // }
-/*
+void Circle::draw(Window const& w, float thickness) const{
+  
    Vec2 sp{center_.x, center_.y - radius_};  //startpoint 
     for(int i = 0; i < 100; ++i){
         float rot = ((2 * M_PI)/100);                //rotation-Var.
@@ -41,7 +40,7 @@ void Circle::draw(Window const& w) const{
         sp = np;  // Übergabe nächster Startpoint 
     }
 }
-*/
+
 bool Circle::is_inside(Vec2 const& p) const{
     Vec2 rv = p - center_;
     float distance_to_center = sqrt(pow(rv.x,2) + pow(rv.y,2));

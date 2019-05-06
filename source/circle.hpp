@@ -15,7 +15,7 @@ public:
     Circle(Vec2 const& ctr, float r, Color const& rgb);  // Custum-Init  ACHTUNG - gleiche Signatur inkl const und & in cpp erstellen  
     float circumference() const; 
     void draw(Window const& w)const; 
-  //  void draw(Window const& win, float thickness) const;
+    void draw(Window const& win, float thickness) const;
     bool is_inside(Vec2 const& p) const;
 
 
