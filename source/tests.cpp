@@ -168,25 +168,7 @@ TEST_CASE("mat2", "[mat2]"){
   REQUIRE(mmmm.e_01 == Approx(1.0f));
   REQUIRE(mmmm.e_10 == Approx(-1.0f));
   REQUIRE(mmmm.e_11 == Approx(0.0f));
-  
-/*
-  Mat2 matr1{3.0f,-1.0f,0.0f,3.0f};     //Vekt * Matr  Multipl   FEHLER !!!!!!!!!!!!!!!!!!!!
-  Vec2 vect1{2.0f,-4.0f};
-  
-  Vec2 vect2 = matr1*vect1;
-  REQUIRE(vect2.x == Approx(6.0f));
-  REQUIRE(vect2.y == Approx(-14.0f));
 
-  std::cout << vect2.x << "\n";
-  std::cout << vect2.y << "\n";
-  /*
-
-
-  std::cout << mx_8.e_00 << "\n";
-  std::cout << mx_8.e_01 << "\n";
-  std::cout << mx_8.e_10 << "\n";
-  std::cout << mx_8.e_11 << "\n";
-  */
 }
 
 TEST_CASE("circle", "[circle]"){
@@ -223,6 +205,20 @@ TEST_CASE("rectangle", "[rectangle]"){
   float r_2 = rect2.circumference();
   REQUIRE(r_2 == Approx(16.0));
 
+}
+
+TEST_CASE("is_inside", "[is_inside]"){
+  Circle cir;
+  Vec2 a {0.0f,0.0f};
+  Vec2 b {1.1f,1.1f};
+  REQUIRE(cir.is_inside(a) == true);
+  REQUIRE(cir.is_inside(b) == false);
+
+  Rectangle rec;
+  Vec2 c {1.0f,1.0f};
+  Vec2 d {100.0f,100.0f};
+  REQUIRE(rec.is_inside(c) == true);
+  REQUIRE(rec.is_inside(d) == false);
 }
 
 int main(int argc, char *argv[])
