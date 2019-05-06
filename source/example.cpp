@@ -12,43 +12,12 @@ int main(int argc, char* argv[])
   Window win{std::make_pair(800,800)};
 
 
-  
- 
-
-  
-//  Vec2 ctr{600.0f, 600.0f};
-//  Vec2 ctr_2{300.0f, 300.0f};
-//  Vec2 second{0.0f, -350.0f};
-//  Vec2 minute{0.0f, -275.0f};
-//  Vec2 hour{0.0f, -200.0f};
-
-//  Color col{0.0f, 0.9f, 0.5f};
-//  Color clr{153.0f/255.0f,50.0f/255.0f,204.0f/255.0f};
-
- // Rectangle rec{};
-//  Rectangle rec_2{min, max, clr};
-/*
-  Circle cir{};
-  Circle cir_2{150.0f, ctr, clr};
-  Circle cir_3{50.0f, ctr_2, clr};
-
-  std::vector<Rectangle>rectangles;
-  std::vector<Circle>circles;
-*/
-//  rectangles.push_back(rec);
-//  rectangles.push_back(rec_2);
-
-//  circles.push_back(cir);
-//  circles.push_back(cir_2);
-//  circles.push_back(cir_3);
-
-
   while (!win.should_close()) {
     if (win.get_key(GLFW_KEY_ESCAPE) == GLFW_PRESS) {
       win.close();
     }
 
-    Vec2 v_1 = {400.0f, 400.0f};  // 
+    Vec2 v_1 = {400.0f, 400.0f};  //  drawTest for  Rectangles and Circles
     Vec2 v_2 = {500.0f, 500.0f};
     Color c_1 = {1.0f, 0.0f, 1.0f};
     Color c_2 = {0.8f, 0.2f, 0.3f};
@@ -69,29 +38,9 @@ int main(int argc, char* argv[])
     Rectangle r_4{v_5,v_1,c_5};   //zusätzlicher wert für thickness am ende wird nicht richtig erkannt
     r_4.draw(win);
 
-    Circle cir_3{v_1,10.0f,c_6};  // (Param.-center,radius,color)
+    Circle cir_3{v_5,20.0f,c_6};  // (Param.-center,radius,color)
     cir_3.draw(win);
 
-
-
-
-    
-
-    //Circle kr {270, p_};
-    // kr.draw(win);
-
-    //Rechteck
-    //rechteck[1] = {p_, 100.0f, 100.0f, e_};
-    /*rechteck[1].draw(win);
-    
-    //Kreis
-    kreis[1] = {100.0f, p_, e_};
-    kreis[1].draw(win);
-    */
-
-    //win.draw_line(400.0f,400.0f, 400.0f, 400.0f, 1.0f,0.0f,0.0f);
-    //win.draw_line(400.0f,400.0f, 400.0f, 400.0f, 0.0f,1.0f,0.0f);
-    //win.draw_line(400.0f,400.0f, 400.0f, 400.0f, 0.0f,0.0f,1.0f);
 
 
     bool left_pressed = win.get_mouse_button(GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
