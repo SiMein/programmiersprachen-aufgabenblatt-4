@@ -7,9 +7,9 @@ Circle::Circle():
   center_{0.0f, 0.0f},
   radius_{1.0f},
   color_{0.5f, 0.5f, 0.5f} {}  // Wozu weitere geschweifte KLammer hier ???
-                                // Warum hier Kommata statt Semikolon ?
+                              // Kammatrennung immer hier ?
 
-Circle::Circle(Vec2 const& ctr, float r, Color const& rgb) :  // check übergabearten !!  Gleiche Signatur in hpp !!
+Circle::Circle(Vec2 const& ctr, float r, Color const& rgb) :  
   center_{ctr},
   radius_{r},
   color_{rgb} {}
@@ -29,7 +29,6 @@ void Circle::draw(Window const& w) const{
         sp = np;  // Übergabe nächster Startpoint 
     }
 }
-
 //void draw(Window const& win, float thickness) const{
  // }
 /*
@@ -43,3 +42,15 @@ void Circle::draw(Window const& w) const{
     }
 }
 */
+bool Circle::is_inside(Vec2 const& p) const{
+    Vec2 rv = p - center_;
+    float distance_to_center = sqrt(pow(rv.x,2) + pow(rv.y,2));
+    if(distance_to_center > radius_){
+        //std::cout << "Point is in Object..\n";
+        return false;
+    }
+    else{
+        //std::cout << "Point is in Object.\n";
+        return true;
+    }
+}
