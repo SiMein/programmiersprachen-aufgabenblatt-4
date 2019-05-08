@@ -13,6 +13,7 @@ class Circle {
 public:
     Circle();                                //default -Init der privat Attrib. ??
     Circle(Vec2 const& ctr, float r, Color const& rgb);  // Custum-Init  ACHTUNG - gleiche Signatur inkl const und & in cpp erstellen  
+    Circle(Vec2 const& ctr, float r, Color const& rgb,float thickness );
     float circumference() const; 
     void draw(Window const& w)const; 
     void draw(Window const& win, float thickness) const;

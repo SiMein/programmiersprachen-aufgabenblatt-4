@@ -14,6 +14,13 @@ Circle::Circle(Vec2 const& ctr, float r, Color const& rgb) :
   radius_{r},
   color_{rgb} {}
 
+Circle::Circle(Vec2 const& ctr, float r, Color const& rgb,float thickness) :  
+  center_{ctr},
+  radius_{r},
+  color_{rgb} {}
+  // thickness_{thickness} 
+
+
 float Circle::circumference() const{
     float u = 2*M_PI * radius_;
     return u;
