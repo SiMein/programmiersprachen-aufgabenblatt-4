@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
     Rectangle r_4{v_5,v_1,c_5,20.0f};   //zusätzlicher wert für thickness am ende wird nicht richtig erkannt
     r_4.draw(win);
 
-    Circle cir_3{v_5,20.0f,c_6,50.0};  // (Param.-center,radius,color)
+    Circle cir_3{v_5,20.0f,c_6,50.0f};  // (Param.-center,radius,color)
     cir_3.draw(win);
 
 
