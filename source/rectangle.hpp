@@ -12,7 +12,8 @@
 class Rectangle {
 public:
     Rectangle(); //default -Init der privat Attrib. ??
-    Rectangle(Vec2 const& mi, Vec2 const& ma, Color const& rgb);  // Custum-Init
+    Rectangle(Vec2 const& mi, Vec2 const& ma, Color const& rgb);       // Custum-Init
+    Rectangle(Vec2 const& mi, Vec2 const& ma, Color const& rgb, float thickness);  // Custum-Init
     float circumference() const; 
     void draw(Window const& w)const;
     void draw(Window const& w, float thickness) const;
