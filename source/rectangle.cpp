@@ -16,6 +16,12 @@ Rectangle::Rectangle(Vec2 const& mi, Vec2 const& ma, Color const& rgb):  // Cust
       max_{ma},
       color_{rgb} {} 
 
+Rectangle::Rectangle(Vec2 const& mi, Vec2 const& ma, Color const& rgb, float thickness):  // Custum-Init 
+      min_{mi},
+      max_{ma},
+      color_{rgb} {}
+      // thickness_{thickness} {} 
+
 float Rectangle::circumference() const{
     float edge1 = max_.x - min_.x;
     float edge2 = max_.y - min_.y;
