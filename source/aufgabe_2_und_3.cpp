@@ -1,14 +1,14 @@
 #include <list>
 #include <iostream>
 
-list<unsigned int>   defau;
-list<unsigned int>   empty{};
-list<unsigned int>   l{1,2,3,4,5};
-list<unsigned int>::iterator  i=l.begin();
+//list<unsigned int>   defau;
+//list<unsigned int>   empty{};
+//list<unsigned int>   l{1,2,3,4,5};
+//list<unsigned int>::iterator  i=l.begin();
 
-std::cout << defau.size ;
-std::cout << empty.size ;
-std::cout << l.size ;
+//std::cout << defau.size ;
+//std::cout << empty.size ;
+//std::cout << l.size ;
 
 int main(int argc, char* argv[]){
 
