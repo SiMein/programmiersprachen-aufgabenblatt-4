@@ -10,9 +10,9 @@ std::cout << defau.size ;
 std::cout << empty.size ;
 std::cout << l.size ;
 
-//int main(int argc, char* argv[]){
+int main(int argc, char* argv[]){
 
-//}
+}
 
 //std::set  // erlaubt keine doppelten bzw mehrfachen Werte
 
