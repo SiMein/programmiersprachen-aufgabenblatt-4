@@ -219,9 +219,19 @@ TEST_CASE("is_inside", "[is_inside]"){
   Vec2 d {100.0f,100.0f};
   REQUIRE(rec.is_inside(c) == true);
   REQUIRE(rec.is_inside(d) == false);
+  
+}
+TEST_CASE("print-func-circle", "[print-func-circle]"){
+  std::cout << " Das ist ein Printout ";
+  operator<<(std::cout, "dsaddad");
+  Circle cp_10;
+  cp_10.print(std::cout);
+  
+  std::cout << cp_10 << "\n";
 }
 
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);
+
 }
