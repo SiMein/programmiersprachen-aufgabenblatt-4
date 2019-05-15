@@ -6,19 +6,32 @@ Circle::Circle():
                              //name_  {"Circle_default_constructed"},
   center_{0.0f, 0.0f},
   radius_{1.0f},
-  color_{0.5f, 0.5f, 0.5f} {}  // Wozu weitere geschweifte KLammer hier ???
-                              // Kammatrennung immer hier ?
+  color_{0.5f, 0.5f, 0.5f},   // Wozu weitere geschweifte KLammer hier ???
+  name_{"default-name"} {}    // Kammatrennung immer hier ?
 
 Circle::Circle(Vec2 const& ctr, float r, Color const& rgb) :  
   center_{ctr},
   radius_{r},
   color_{rgb} {}
 
+Circle::Circle(Vec2 const& ctr, float r, Color const& rgb, std::string const& na_) :  
+  center_{ctr},
+  radius_{r},
+  color_{rgb},
+  name_{na_} {}
+
 Circle::Circle(Vec2 const& ctr, float r, Color const& rgb,float thickness) :  
   center_{ctr},
   radius_{r},
   color_{rgb} {}
   // thickness_{thickness} 
+
+std::ostream& Circle::print(std::ostream& o) const
+{
+    o << "Kreis: Name: " << name_ << ",\n Radius: " << radius_ << ",\n Mittelpunkt: x: " << center_.x << ",\n y: " << center_.y <<
+    ",\n Farbe: r: " << color_.r << ",\n g: " << color_.g << ",\n b: " << color_.b;
+    return o;
+}
 
 
 float Circle::circumference() const{
@@ -59,4 +72,9 @@ bool Circle::is_inside(Vec2 const& p) const{
         //std::cout << "Point is in Object.\n";
         return true;
     }
+}
+std::ostream& operator<<(std::ostream& o, Circle const& c) {  //  Freie Funktion -wie auf Folie OOP-04 S.11 
+    c.print(o);
+    return o;
+
 }
