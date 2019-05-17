@@ -222,8 +222,8 @@ TEST_CASE("is_inside", "[is_inside]"){
   
 }
 TEST_CASE("print-func-circle", "[print-func-circle]"){
-  std::cout << " Das ist ein Printout ";
-  operator<<(std::cout, "dsaddad");
+
+  operator<<(std::cout, "\n Dies ist ein String\n ");
   Circle cp_10;
   cp_10.print(std::cout);
   
