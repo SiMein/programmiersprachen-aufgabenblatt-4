@@ -5,6 +5,7 @@
 #include "circle.hpp"
 #include "rectangle.hpp"
 #include <iostream>
+#include <map>
 
 
 TEST_CASE("vec2", "[vec2]")
@@ -223,10 +224,49 @@ TEST_CASE("is_inside", "[is_inside]"){
 }
 TEST_CASE("print-func-circle", "[print-func-circle]"){
 
-  operator<<(std::cout, "\n Dies ist ein String\n ");
+  Vec2 vec_x1{};
+  Color col_x1{};
+
+  std::cout << "-------------------multimap-searching-test ---------------------------------";
+
   Circle cp_10;
+  Circle cp_x1(vec_x1, 5.0f, col_x1, "Circle_x1");
+  Circle cp_x2(vec_x1, 6.0f, col_x1, "Circle_x2");
+  Circle cp_x3(vec_x1, 7.0f, col_x1, "Circle_x3");
+  Circle cp_x4(vec_x1, 8.0f, col_x1, "Circle_x4");
+  Circle cp_x5(vec_x1, 9.0f, col_x1, "Circle_x4");
+
+  std::multimap<std::string, Circle> mumap_5{{"Circle_x1", cp_x1},{"Circle_x2", cp_x2}}; //hier nur geschweifte Klammern, weil Konstr !!
+  std::cout << "\n" << mumap_5.size() << std::endl;
+
+  mumap_5.insert({"Circle_x3", cp_x3}); // hier aussen runde Klammern weil Methode und innen geschweifte Klammern
+  mumap_5.insert({"Circle_x4", cp_x4});
+  mumap_5.insert({"Circle_x4", cp_x5});
+
+  std::cout << "\nmultimap-size is : " << mumap_5.size() << std::endl;
+  std::cout << "\nBitte geben Sie den Namen des Circle-Objektes ein welches Sie suchen! \n";
+  std::string eingabestring;
+  std::cin >> eingabestring;
+
+  std::multimap<std::string, Circle>::iterator iter_007;
+  std::cout << "mumap_5 contains:\n";
+  bool found = false;
+  for (iter_007 = mumap_5.begin(); iter_007!=mumap_5.end(); ++iter_007){
+    if ((*iter_007).first == eingabestring){
+    operator<<(std::cout << "\nI found it !!! (printout by operator << ) \n:" , (*iter_007).second  );
+    //std::cout << "\nI found it !!! \n:" << (*iter_007).first << " => " << (*iter_007).second << '\n';
+    found = true;
+    }  
+  }
+  if (!found){
+    operator<<(std::cout, "\nCircle-Objekt was NOT  in the multimap !!! (print by operator<< )");
+  }
+
+
+  std::cout << "\n --------------------Printausgabetest---------------------------------\n ";
   cp_10.print(std::cout);
-  
+  operator<<(std::cout, "\n Dies ist ein String\n ");
+  std::cout << cp_10.name_<< "zugriff über .attribut";
   std::cout << cp_10 << "\n";
 }
 
