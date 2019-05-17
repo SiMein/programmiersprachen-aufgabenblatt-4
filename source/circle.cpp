@@ -1,7 +1,7 @@
 #include "circle.hpp"
 #include <cmath>
 #include <iostream>
-
+                        //Klassenbeschreibung bzw. Art ein Objekt zu init. immer mit Signatur "Circle::Circle():"
 Circle::Circle():
                              //name_  {"Circle_default_constructed"},
   center_{0.0f, 0.0f},
@@ -25,15 +25,7 @@ Circle::Circle(Vec2 const& ctr, float r, Color const& rgb,float thickness) :
   radius_{r},
   color_{rgb} {}
   // thickness_{thickness} 
-
-std::ostream& Circle::print(std::ostream& o) const
-{
-    o << "Kreis: Name: " << name_ << ",\n Radius: " << radius_ << ",\n Mittelpunkt: x: " << center_.x << ",\n y: " << center_.y <<
-    ",\n Farbe: r: " << color_.r << ",\n g: " << color_.g << ",\n b: " << color_.b;
-    return o;
-}
-
-
+                //  Memberfkt. immer mit Typ vorne :: Name d memberfkt hinten
 float Circle::circumference() const{
     float u = 2*M_PI * radius_;
     return u;
@@ -73,6 +65,15 @@ bool Circle::is_inside(Vec2 const& p) const{
         return true;
     }
 }
+
+std::ostream& Circle::print(std::ostream& o) const
+{
+    o << "\nCirclename: " << name_ << ",\n Radius: " << radius_ << ",\n Mittelpunkt: x: " << center_.x << ", y: " << center_.y <<
+    ",\n Farbe: r: " << color_.r << ", g: " << color_.g << ", b: " << color_.b;
+    return o;
+            // Konkatenation von Circleeigenschaften auf das ostream-Objekt mittels <<
+}
+
 std::ostream& operator<<(std::ostream& o, Circle const& c) {  //  Freie Funktion -wie auf Folie OOP-04 S.11 
     c.print(o);
     return o;

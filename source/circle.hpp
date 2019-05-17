@@ -9,7 +9,7 @@
 
 #include <string>
 
-class Circle {
+class Circle {      
 public:
     Circle();                                //default -Init der privat Attrib. ??
     Circle(Vec2 const& ctr, float r, Color const& rgb);  // Custum-Init  ACHTUNG - gleiche Signatur inkl const und & in cpp erstellen  
@@ -25,7 +25,8 @@ public:
     float radius_;
     Color color_;
     std::string name_;
-};
+};                              // Freie Funktion  , wie immer .hpp nur den "Kopf" d Funkton
 
+// Rückgabetyp  Bezeichner  (Parameter hier Objekt v Typ ostream und Circle-Objekt)
 std::ostream& operator<<(std::ostream& o, Circle const& c);
 #endif
