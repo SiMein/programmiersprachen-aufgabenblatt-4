@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){
     std::cout << "Alle Zahlen in der Liste :";
     
     for (unsigned int i : rl){
-        std::cout << i << ",";
+        std::cout << i << ",";         // std::set  // erlaubt keine doppelten bzw mehrfachen Werte
     }                               // set --Schluessel und Wert identisch , collection of unique keys, sorted by keys 
     std::set<unsigned int> all_unikate(std::begin(rl), std::end(rl));  // set -container - keine duplikate mgl. ! 
     std::cout << "\nGesamtgroesse der rl-Liste : " << rl.size()<< std::endl;
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]){
     std::cout << "Nicht in der (Set-)Liste sind : \n";
     
     for(int i = 0 ; i < 100 ; i++) {
-        if (all_unikate.count(i) != true) {            //Abfrage ob die Zahl (mit ihren Haufgikeiten in der Liste) existiert 
+        if (all_unikate.count(i) != true) {      //Abfrage ob die Zahl (mit ihren Haufgikeiten in der Liste) existiert 
             std::cout << "[" << i << "]" ;
         }
     }
@@ -48,11 +48,11 @@ int main(int argc, char* argv[]){
 
                         //map-- collection of key-value pairs, sorted by keys, keys are unique   (in multimap keys must not be unique)
    
-    std::map<unsigned int, unsigned int> map_1; // map erstellen -iterrieren ueber die ganze list, 
-                                                // im rumpf Häufigkeit inkrementieren , ggfs. auch mehrfach.
+    std::map<unsigned int, unsigned int> map_1;     // map erstellen -iterrieren ueber die ganze list, 
+                                                     // im rumpf Häufigkeit inkrementieren , ggfs. auch mehrfach.
     for (std::list<unsigned int>::iterator i = rl.begin(); i != rl.end(); ++i) {    // iterator hier kein einfacher int, sondern spe 
-    map_1[*i]++;                                                                    // beim durchzählen, also auch also Iterator
-    }                                                                              //auf anderem Container gleichzeitig zu gebrauchen ?!
+    map_1[*i]++;  // besonderheit bei map--wenn key noch nicht vorhanden , dann direkte erzeugung dieses Key, so direkte Inkrementierung mgl.                             
+    }                                                                              
 
     std::cout << "Wert : Häufigkeit standard-for-schleife-(saved in map_1)" << std::endl;     
     for (int i = 0; i < 100; ++i) {
@@ -61,73 +61,17 @@ int main(int argc, char* argv[]){
     std::cout << std::endl;
 
 
-    std::cout <<"\nHäufigkeit direkt-map-schleife-(saved in map_1)\n ";
+    std::cout <<"\nHäufigkeit direkt-map-schleife-(saved in map_1) auto Iteratorzuweisung begin u end  und first/second zugriff\n ";
     for (auto it_map = map_1.begin(); it_map != map_1.end(); ++it_map){
        std::cout << it_map->first << ":" << it_map->second << ", "; 
     }
     std::cout << std::endl;
-
-    /*
-     std::cout <<"\nHäufigkeit direkt-map-schleife-(saved in map_1)\n ";
-    for (auto& el_pair : it_map){
-       std::cout << it_map. << ":" << it_map.second << ", "; 
-    */
-
-
-    //std::map<unsigned int, unsigned int>::iterator iter1 = map_1.begin;
-    // std:cout << iter1.[1];
-        
-
- //   for (std::list<unsigned int>::iterator it = rl.begin(); (rl.size() < 100 ); it++){
- //      rl.push_back(rand()%100);  // Trick mit Restausgabe / kein Ober-/Untergrenzenoperator möglich ??   
-// it_map << ":" << map_1[i] <<
- //   std::map<unsigned int,unsigned int> map_2 ;
-    
- //   for (auto j : rl){
-    
- //   map_2[j]++;
-  //  }
-}
-
-/*
+} 
+/*  
+  //  alternativemit direktem zugriff auf das Pair des Iterators , so direkter Aufruf mit first und second möglich 
 
 Associative
     Elements in associative containers are referenced by their key and not by their absolute position in the container.
 Ordered
     The elements in the container follow a strict order at all times. All inserted elements are given a position in this order.
-
-
-
-
-for (std::list<unsigned int>::iterator it = l.begin(); it != l.end(); it++){
-    std::cout << *it;
-
-    std::cout << '\n';
-};
-*/
-
-/*
-list<unsigned int>::iterator it = data.begin();
-
-    for (data.begin(); it != data.end(); it++)
-    {
-        *it = rand() % 101;
-}
-
-push_back(i)
-
-
-}
-
-//std::set  // erlaubt keine doppelten bzw mehrfachen Werte
-
-// Alternativ:
-
-// auto i = l.begin();
-
-
-std::list   unsigned int
-namespace list {
-    template <typename T>
-}
 */
