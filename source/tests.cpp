@@ -270,6 +270,18 @@ TEST_CASE("print-func-circle", "[print-func-circle]"){
   std::cout << cp_10 << "\n";
 }
 
+TEST_CASE("students_map", "[students_map]"){
+  std :: map <std::string ,int > matrikelnummern ;
+  // Hinzufuegen von vielen Studenten
+  matrikelnummern ["Max Mustermann "] = 12345;
+  matrikelnummern [" Erika Mustermann "] = 23523;
+  // ...
+  //exmatrikulation ( matrikelnummer [" Fred Fuchs " ]); 
+
+  std::cout << "\n" << matrikelnummern.size() << "\n"; 
+  
+}
+
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);
