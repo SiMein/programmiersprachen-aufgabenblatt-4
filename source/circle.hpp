@@ -19,7 +19,7 @@ public:
     void draw(Window const& w)const; 
     void draw(Window const& win, float thickness) const;
     bool is_inside(Vec2 const& p) const;
-    std::ostream& print(std::ostream& o) const;
+    std::ostream& print(std::ostream& o) const;   
     
     Vec2  center_;
     float radius_;
@@ -29,4 +29,9 @@ public:
 
 // Rückgabetyp  Bezeichner  (Parameter hier Objekt v Typ ostream und Circle-Objekt)
 std::ostream& operator<<(std::ostream& o, Circle const& c);
+
+bool operator <( Circle const& a,Circle const& b); 
+bool operator >( Circle const& a,Circle const& b); 
+bool operator ==( Circle const& a,Circle const& b);
+
 #endif

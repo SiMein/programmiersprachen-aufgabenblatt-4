@@ -278,8 +278,43 @@ TEST_CASE("students_map", "[students_map]"){
   // ...
   //exmatrikulation ( matrikelnummer [" Fred Fuchs " ]); 
 
-  std::cout << "\n" << matrikelnummern.size() << "\n"; 
-  
+  std::cout << "\n  Student und Matrikel in map " << matrikelnummern.size() << "\n"; 
+
+}
+
+TEST_CASE("sort","[Circles]"){
+
+
+  Vec2 vec_x10{};
+  Color col_x10{};
+
+    std::cout << "\n---------------------- Circles into Vector  (aufg_6------------------------\n";
+
+    Circle cp_100;
+
+    //std::vector<Circle> sorted_circles;
+
+    Circle cp_x10(vec_x10, 50.0f, col_x10, "Circle_x10");
+    Circle cp_x20(vec_x10, 66.0f, col_x10, "Circle_x20");
+    Circle cp_x30(vec_x10, 97.0f, col_x10, "Circle_x30");
+    Circle cp_x40(vec_x10, 18.0f, col_x10, "Circle_x40");
+    Circle cp_x50(vec_x10, 25.0f, col_x10, "Circle_x50");
+
+    std::vector<Circle> sorted_circles{cp_x10}; //hier nur geschweifte Klammern, weil Konstr !! hier zB. : Init mit 1. Circle wert
+    
+                                      // weitere Circle objekte einfuegen
+    sorted_circles.push_back(cp_x20); // hier aussen runde Klammern weil Methode -Parameteruebergabe
+    sorted_circles.push_back(cp_x30);
+    sorted_circles.push_back(cp_x30);
+    sorted_circles.push_back({cp_x50});
+
+    std::cout << "\n" << sorted_circles.size() << std::endl;
+
+    std::sort(sorted_circles.begin(), sorted_circles.end());  // standardfkt sort braucht spezielle Def des Vgl operators fuer Circle-Objekte
+
+    REQUIRE(std::is_sorted(sorted_circles.begin(), sorted_circles.end()));  // bekommt anfangs und endwert d liste un vgl, ob sortiert
+
+
 }
 
 int main(int argc, char *argv[])

@@ -30,6 +30,8 @@ float Circle::circumference() const{
     float u = 2*M_PI * radius_;
     return u;
 }
+
+
 void Circle::draw(Window const& w) const{
 
     Vec2 sp{center_.x, center_.y - radius_};  //startpoint 
@@ -79,4 +81,27 @@ std::ostream& operator<<(std::ostream& o, Circle const& c) {  //  Freie Funktion
     c.print(o);
     return o;
 
+}
+
+bool operator <( Circle const& a,Circle const& b){
+    if(a.radius_ < b.radius_){
+        return true;
+    } else {
+        return false;
+    }
+
+}
+bool operator >( Circle const& a,Circle const& b){
+    if(a.radius_ > b.radius_){
+        return true;
+    } else {
+        return false;
+    }
+} 
+bool operator ==( Circle const& a,Circle const& b){
+    if(a.radius_ == b.radius_){
+        return true;
+    } else {
+        return false;
+    }
 }
