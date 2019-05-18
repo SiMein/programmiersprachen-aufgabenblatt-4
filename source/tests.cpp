@@ -282,7 +282,7 @@ TEST_CASE("students_map", "[students_map]"){
 
 }
 
-TEST_CASE("sort","[Circles]"){
+TEST_CASE("sort1","[Circles]"){
 
 
   Vec2 vec_x10{};
@@ -290,7 +290,7 @@ TEST_CASE("sort","[Circles]"){
 
     std::cout << "\n---------------------- Circles into Vector  (aufg_6------------------------\n";
 
-    Circle cp_100;
+    Circle cp_10;
 
     //std::vector<Circle> sorted_circles;
 
@@ -305,7 +305,7 @@ TEST_CASE("sort","[Circles]"){
                                       // weitere Circle objekte einfuegen
     sorted_circles.push_back(cp_x20); // hier aussen runde Klammern weil Methode -Parameteruebergabe
     sorted_circles.push_back(cp_x30);
-    sorted_circles.push_back(cp_x30);
+    sorted_circles.push_back(cp_x40);
     sorted_circles.push_back({cp_x50});
 
     std::cout << "\n" << sorted_circles.size() << std::endl;
@@ -313,7 +313,52 @@ TEST_CASE("sort","[Circles]"){
     std::sort(sorted_circles.begin(), sorted_circles.end());  // standardfkt sort braucht spezielle Def des Vgl operators fuer Circle-Objekte
 
     REQUIRE(std::is_sorted(sorted_circles.begin(), sorted_circles.end()));  // bekommt anfangs und endwert d liste un vgl, ob sortiert
+      std::cout << "\nAusgabe des sortierten Vectors mit zusaetzlich loop :\n";
+    for (auto iter_008 = sorted_circles.begin(); iter_008 != sorted_circles.end(); ++iter_008){
+      std::cout << (*iter_008).radius_ << "\n";
+    }
 
+}
+
+TEST_CASE("sort2","[Circles]"){
+
+
+  Vec2 vec_x102{};
+  Color col_x102{};
+
+    std::cout << "\n---------------------- Circles into Vector 7--by--Lambda------------------------\n";
+
+    Circle cp_101;
+
+    //std::vector<Circle> sorted_circles;
+
+    Circle cp_x100(vec_x102, 500.0f, col_x102, "Circle_x100");
+    Circle cp_x200(vec_x102, 660.0f, col_x102, "Circle_x200");
+    Circle cp_x300(vec_x102, 970.0f, col_x102, "Circle_x300");
+    Circle cp_x400(vec_x102, 180.0f, col_x102, "Circle_x400");
+    Circle cp_x500(vec_x102, 250.0f, col_x102, "Circle_x500");
+
+    std::vector<Circle> sorted_circles2{cp_x100}; //hier nur geschweifte Klammern, weil Konstr !! hier zB. : Init mit 1. Circle wert
+    
+                                      // weitere Circle objekte einfuegen
+    sorted_circles2.push_back(cp_x200); // hier aussen runde Klammern weil Methode -Parameteruebergabe
+    sorted_circles2.push_back(cp_x300);
+    sorted_circles2.push_back(cp_x400);
+    sorted_circles2.push_back({cp_x500});
+
+    std::cout << "\n" << sorted_circles2.size() << std::endl;
+                                             //Bindung[] ,()Parameterliste optional, ->Rueckgabetyp optional, {Funktionsrumpf}
+    std::sort(sorted_circles2.begin(),sorted_circles2.end(),[] (Circle const& in_a, Circle const& in_b) -> bool{
+        return (in_a.radius_ < in_b.radius_);
+    });
+
+    //std::sort(sorted_circles2.begin(), sorted_circles2.end());  // standardfkt sort braucht spezielle Def des Vgl operators fuer Circle-Objekte
+
+    REQUIRE(std::is_sorted(sorted_circles2.begin(), sorted_circles2.end()));  // bekommt anfangs und endwert d liste un vgl, ob sortiert
+      std::cout << "\nAusgabe des sortierten Vectors mit zusaetzlich loop :\n";
+    for (auto iter_009 = sorted_circles2.begin(); iter_009 != sorted_circles2.end(); ++iter_009){
+      std::cout << (*iter_009).radius_ << "\n";
+    }
 
 }
 
