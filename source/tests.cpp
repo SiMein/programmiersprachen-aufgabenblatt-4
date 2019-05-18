@@ -6,6 +6,7 @@
 #include "rectangle.hpp"
 #include <iostream>
 #include <map>
+#include <functional>
 
 
 TEST_CASE("vec2", "[vec2]")
@@ -320,7 +321,7 @@ TEST_CASE("sort1","[Circles]"){
 
 }
 
-TEST_CASE("sort2","[Circles]"){
+TEST_CASE("sort2 + funtor","[Circles]"){
 
 
   Vec2 vec_x102{};
@@ -358,6 +359,19 @@ TEST_CASE("sort2","[Circles]"){
       std::cout << "\nAusgabe des sortierten Vectors mit zusaetzlich loop :\n";
     for (auto iter_009 = sorted_circles2.begin(); iter_009 != sorted_circles2.end(); ++iter_009){
       std::cout << (*iter_009).radius_ << "\n";
+    }
+
+    std::cout << "\nneuer kleiner Circle hinten hinzugefuegt in Vector\n";
+    Circle cp_x600(vec_x102, 140.0f, col_x102, "Circle_x600");
+    sorted_circles2.push_back({cp_x600});
+    for (auto iter_009 = sorted_circles2.begin(); iter_009 != sorted_circles2.end(); ++iter_009){
+      std::cout << (*iter_009).radius_ << "\n";
+    }
+
+    std::cout << "\nnun sortieren mit funktor , diesmal absteigend sortiert ( standard-greater-fkt bedient sich am selbst definierten vergleichsoperator für circle):\n";
+    std::sort(sorted_circles2.begin(),sorted_circles2.end(),std::greater<Circle>());
+    for (auto iter_0010 = sorted_circles2.begin(); iter_0010 != sorted_circles2.end(); ++iter_0010){
+      std::cout << (*iter_0010).radius_ << "\n";
     }
 
 }
