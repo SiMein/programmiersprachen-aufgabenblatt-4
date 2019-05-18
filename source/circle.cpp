@@ -74,6 +74,7 @@ std::ostream& Circle::print(std::ostream& o) const
             // Konkatenation von Circleeigenschaften auf das ostream-Objekt mittels <<
 }
 
+
 std::ostream& operator<<(std::ostream& o, Circle const& c) {  //  Freie Funktion -wie auf Folie OOP-04 S.11 
     c.print(o);
     return o;
