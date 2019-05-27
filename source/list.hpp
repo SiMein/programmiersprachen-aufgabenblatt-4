@@ -148,7 +148,15 @@ class List {
 
     /* ... */
     void push_front(T const& element) {
-  		//not implemented yet
+  		if (size() == 0){         // Wenn leer dann erstes gleich letztes element
+        first_ = new ListNode<T>{element,nullptr,nullptr}; // init des neuen Elements entspr. ListNode Konstruktor
+        last_ = first_;
+      }
+      else if (size() != 0){
+        //first_
+        first_ = new ListNode<T>{element,nullptr, first_};
+      }
+      ++size_;
     }
 
     /* ... */
@@ -168,16 +176,16 @@ class List {
 		//not implemented yet
     }
 
-  	/* ... */
+  	
     T& front() {
-    	assert(!empty());
+    //	assert(!empty());  Original
   		//not implemented yet
     	
-    	return T(); //<- obviously wrong because of 
+   	return first_->value; //<- obviously wrong because of 
     				// returned reference to tmp-Object
     }
 
-  	/* ... */
+  
     T& back() {
     	assert(!empty());
 
@@ -189,12 +197,11 @@ class List {
 
   	//(4.2) function says true when list empty else false
     bool empty() const {
-      return true;
-      //return size_t == 0;
+      return (size() ==  0);  
     };
 
     //(4.2)  standard getter function for the size of list
-    std::size_t size() const {
+    std::size_t size() const {    // Datentyp   Methodenname  Wert wird nicht manipuiert
       return size_;
       //return std::numeric_limits<std::size_t>::max(); // 
       //Returns the maximum finite value representable by the numeric type T.
@@ -202,9 +209,9 @@ class List {
 
 
   private:                // first (default)-Init of the Membervar.
-    std::size_t size_ = 0;
-    ListNode<T>* first_ = nullptr;
-    ListNode<T>* last_ = nullptr;
+    std::size_t size_ = 0;   // Bibliotheksfunktionen, die Größen annehmen, erwarten, dass sie
+    ListNode<T>* first_ = nullptr;  //den Typ size_t haben, und der Operator sizeof ergibt size_t.
+    ListNode<T>* last_ = nullptr;   // aehnlich aber nicht identisch mit unsigned int
 };
 
 /* ... */
