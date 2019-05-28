@@ -148,20 +148,28 @@ class List {
 
     /* ... */
     void push_front(T const& element) {
+      
   		if (size() == 0){         // Wenn leer dann erstes gleich letztes element
         first_ = new ListNode<T>{element,nullptr,nullptr}; // init des neuen Elements entspr. ListNode Konstruktor
         last_ = first_;
       }
       else if (size() != 0){
-        //first_
+        
         first_ = new ListNode<T>{element,nullptr, first_};
+        first_->next->prev = first_;
       }
       ++size_;
     }
 
     /* ... */
     void push_back(T const& element) {
-  		//not implemented yet
+  		if (size() == 0){
+        last_ = new ListNode<T> {element, nullptr, nullptr};
+        first_ = last_;
+      } else if (size() != 0){
+        last_ = new ListNode<T> {element, first_, nullptr};
+      }
+      ++size_;
     }
 
     /* ... */
@@ -178,9 +186,8 @@ class List {
 
   	
     T& front() {
-    //	assert(!empty());  Original
-  		//not implemented yet
-    	
+    assert(!empty());  //Original
+  		//not implemented yet    	
    	return first_->value; //<- obviously wrong because of 
     				// returned reference to tmp-Object
     }
@@ -188,10 +195,8 @@ class List {
   
     T& back() {
     	assert(!empty());
-
     	//not implemented yet
-
-    	return T(); //<- obviously wrong because of
+    	return last_->value; //<- obviously wrong because of
     				// returned reference to tmp-Object
     }
 
