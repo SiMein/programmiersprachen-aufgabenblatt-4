@@ -152,29 +152,37 @@ class List {
   		if (size() == 0){         // Wenn leer dann erstes gleich letztes element
         first_ = new ListNode<T>{element,nullptr,nullptr}; // init des neuen Elements entspr. ListNode Konstruktor
         last_ = first_;
-      }
-      else if (size() != 0){
-        
-        first_ = new ListNode<T>{element,nullptr, first_};
-        first_->next->prev = first_;
+      }  else {        
+        first_ = new ListNode<T>{element,nullptr, first_}; // Trick- zunächst next-Zeiger auf altes first-element (in im Konstruktor) 
+                                                  // dann Zuweisung des neuen first-elements
+        first_->next->prev = first_;    // zugriff auf altes first element wo vorgänger (neues First-element )verknüpft wird    
       }
       ++size_;
     }
 
     /* ... */
-    void push_back(T const& element) {
+    void push_back(T const& element) {      // analog zu push_front, von der anderen Seite
   		if (size() == 0){
         last_ = new ListNode<T> {element, nullptr, nullptr};
         first_ = last_;
-      } else if (size() != 0){
-        last_ = new ListNode<T> {element, first_, nullptr};
+      } else {
+        last_ = new ListNode<T> {element, last_, nullptr};
+        last_->prev->next = last_;
       }
       ++size_;
     }
 
     /* ... */
     void pop_front() {
-    	assert(!empty());
+    	assert(!empty());  // wie genau verwendet man das ?
+      if (size() == 1){
+        delete first_;
+        first_ = nullptr;
+        size_ = 0;
+      } else {
+
+      }
+
   		//not implemented yet
     }
 

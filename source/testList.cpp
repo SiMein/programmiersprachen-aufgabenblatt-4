@@ -21,22 +21,40 @@ TEST_CASE("list-size", "[aufgabe4.2]") {
 }
 
 
-TEST_CASE ("add an element with push_front ", "[aufg4.3  modifiers ]"){
+TEST_CASE ("add an element with push_front and check front ", "[aufg4.3]"){
 List <int> list ;
+REQUIRE (list.empty()); // wenn liste leer dann direkt true 
 std::cout << "Die Aktuelle Size befor ist : " << list.size() << "\n";
 list.push_front(42);  // Zugriff auf Inhalte des front-Knotens durch dereferenzierung in der Methode front 
 REQUIRE (42 == list.front());
-REQUIRE (42 == list.back());  // Bei nur einem list-element ,front und back zeigen auf gleiches element
+list.push_front(41);
+REQUIRE (41 == list.front());  
 std::cout << "Die Aktuelle Size after ist : " << list.size() << "\n\n";
 }
 
 
-TEST_CASE ("add an element with push_back ", "[aufg4.3  modifiers ]"){
+TEST_CASE ("add an element with push_back and check back", "[aufg4.3]"){
 List <int> list ;
+REQUIRE (list.empty());  // wenn liste leer dann direkt true 
 std::cout << "Die Aktuelle Size befor ist : " << list.size() << "\n";
-list.push_front(42);  // Zugriff auf Inhalte des front-Knotens durch dereferenzierung in der Methode front 
-REQUIRE (42 == list.front());
-REQUIRE (42 == list.back());  // Bei nur einem list-element ,front und back zeigen auf gleiches element
+list.push_back(44);  // Zugriff auf Inhalte des front-Knotens durch dereferenzierung in der Methode front 
+REQUIRE (44 == list.back());
+list.push_back(45);
+REQUIRE (45 == list.back());  // Bei nur einem list-element ,front und back zeigen auf gleiches element
+std::cout << "Die Aktuelle Size after ist : " << list.size() << "\n\n";
+}
+
+TEST_CASE ("delete an element with pop_front and check front", "[aufg4.3]"){
+List <int> list ;
+REQUIRE (list.empty());  // wenn liste leer dann direkt true 
+std::cout << "Die Aktuelle Size befor ist : " << list.size() << "\n";
+list.push_back(44);  // Zugriff auf Inhalte des front-Knotens durch dereferenzierung in der Methode front 
+REQUIRE (44 == list.back());
+list.pop_front();
+
+//list.push_back(45);
+//REQUIRE (45 == list.back());  // Bei nur einem list-element ,front und back zeigen auf gleiches element
+
 std::cout << "Die Aktuelle Size after ist : " << list.size() << "\n\n";
 }
 
