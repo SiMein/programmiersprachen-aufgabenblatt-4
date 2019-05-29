@@ -80,6 +80,20 @@ REQUIRE (48 == list.back());
 std::cout << "Die Aktuelle Size after ist : " << list.size() << "      TestCase_4  \n\n";
 }
 
+
+TEST_CASE ("TestCase_5     clear    should be empty after clearing     ", "[aufg4.4]"){
+List <int> list ;
+list.push_front(1);
+list.push_front(2);
+list.push_front(3);
+list.push_front(4);
+std::cout << "Die Aktuelle Size befor clear ist : " << list.size() << "      TestCase_5 \n";
+list.clear();
+std::cout << "Die Aktuelle Size after clear ist : " << list.size() << "      TestCase_5\n\n";
+list.clear();
+REQUIRE (list.empty());
+}
+
 int main(int argc, char * argv[]) {
 
   return Catch::Session().run(argc, argv);

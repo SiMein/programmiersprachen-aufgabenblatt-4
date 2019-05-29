@@ -118,7 +118,7 @@ class List {
 
   	/* ... */
     ~List() {
-  		//TO IMPLEMENT PROPERLY
+  	   clear();
     }
 
   	/* ... */
@@ -138,7 +138,9 @@ class List {
 
     /* ... */
     void clear() {
-  		////not implemented yet
+  		while (size() != 0){
+        pop_front();
+      }
     }
 
     /* ... */
