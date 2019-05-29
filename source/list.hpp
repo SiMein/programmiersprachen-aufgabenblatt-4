@@ -146,7 +146,7 @@ class List {
   	/* ... */
     //TODO: member function reverse
 
-    /* ... */
+    // Ein Element wird am Anfang der Liste eingefuegt
     void push_front(T const& element) {
       
   		if (size() == 0){         // Wenn leer dann erstes gleich letztes element
@@ -160,7 +160,7 @@ class List {
       ++size_;
     }
 
-    /* ... */
+    // Ein Element wird am Ende der Liste eingefuegt
     void push_back(T const& element) {      // analog zu push_front, von der anderen Seite
   		if (size() == 0){
         last_ = new ListNode<T> {element, nullptr, nullptr};
@@ -172,40 +172,63 @@ class List {
       ++size_;
     }
 
-    /* ... */
+    // Ein Element wird am Anfang der Liste entfernt
     void pop_front() {
-    	assert(!empty());  // wie genau verwendet man das ?
-      if (size() == 1){
-        delete first_;
-        first_ = nullptr;
-        size_ = 0;
+    //	assert(!empty());  // wie genau verwendet man das ?
+      if (size() == 0){
+        std::cout << "Die Liste war bereits leer, entfernen mit pop_front nicht möglich \n";
       } else {
 
+          if (size() == 1){
+          delete first_;
+          first_ = nullptr;
+          size_ = 0;
+        } else {
+            auto help = first_->next;  // Hilfszeiger auf zweites Element
+            delete first_;    // altes first loeschen
+            first_ = help;    // neues first ist altes zweites Element 
+            first_->prev = nullptr; // prevzeiger aktuallisieren
+            --size_;        // ?? Frage -Zeiger müssen nicht deleted werden ?? Nur konkrete Objekte ??
+        }
       }
-
-  		//not implemented yet
     }
 
-    /* ... */
+    // Ein Element wird am Ende der Liste entfernt
     void pop_back() {
-    	assert(!empty());
-		//not implemented yet
-    }
-
-  	
-    T& front() {
-    assert(!empty());  //Original
-  		//not implemented yet    	
-   	return first_->value; //<- obviously wrong because of 
-    				// returned reference to tmp-Object
-    }
-
+    	//assert(!empty());
+      if (size() == 0){
+        std::cout << "Die Liste war bereits leer, entfernen mit pop_back nicht möglich \n";
+      }
+      else {
   
+        if (size() == 1){
+          delete last_;
+          last_ = nullptr;
+          size_ = 0;
+        }else {
+          auto help = last_->prev;
+          delete last_; 
+          last_ = help;    
+          last_->next = nullptr; 
+          --size_;
+        } 
+      }
+    }
+
+  	  // Gibt das Frontelement zurueck per Referenz
+    T& front() {
+    assert(!empty());  
+  	   	
+   	return first_->value; 
+    				
+    }
+
+      // Gibt das Backelement zurueck per Referenz
     T& back() {
     	assert(!empty());
-    	//not implemented yet
-    	return last_->value; //<- obviously wrong because of
-    				// returned reference to tmp-Object
+    	
+    	return last_->value; 
+    				
     }
 
   	//(4.2) function says true when list empty else false
