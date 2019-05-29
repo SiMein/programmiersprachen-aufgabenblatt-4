@@ -92,6 +92,9 @@ list.clear();
 std::cout << "Die Aktuelle Size after clear ist : " << list.size() << "      TestCase_5\n\n";
 list.clear();
 REQUIRE (list.empty());
+list.push_front(1);
+list.~List();
+REQUIRE (list.empty());
 }
 
 int main(int argc, char * argv[]) {
