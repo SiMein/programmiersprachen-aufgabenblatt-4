@@ -26,44 +26,60 @@ struct ListIterator {  // deklarativen Region definiert ist, in der diese using-
   using difference_type   = ptrdiff_t;
   using iterator_category = std::bidirectional_iterator_tag;
 
-  /* DESCRIPTION  operator*() */
+  ListIterator(): //Default-konstr.
+    node{nullptr}{}
+
+  ListIterator(ListNode<T>* n): 
+    node{n}{}  // Custom-konstr.
+
+  // Der Stern-operator soll Dereferenzieren, Zugriff auf d Objekt/Wert ,auf welches der Iterator zeigt//
   T&  operator*()  const {
-  	//not implemented yet
-  	return {};
+  	return node->value;
   } 
 
-  /* DESCRIPTION  operator->() */
+  // Rueckgabe der Referenz auf /Adresse des Objekt
   T* operator->() const {
-  	//not implemented yet
-  	return nullptr;
+  	  	return &(node->value);
   }
 
-  /* ... */
-  ListIterator<T>& operator++() {
-  	//not implemented yet
-  	return {};
-  } //PREINCREMENT
+  // Iterator wird um eins nach vorne versetzt, sofern nicht schon auf Nullptr gewesen
+  ListIterator<T>& operator++() {  // when no Parameter --PREINCREMENT !!
+  	if (node) {
+      node = node->next;
+    }             // Zeigt nun auf naechsten Wert  PREINCREMENT
+  	return *this;
 
-  /* ... */
-  ListIterator<T> operator++(int) {
-  	//not implemented yet
-  	return {};
-  } //POSTINCREMENT (signature distinguishes)
+  } 
 
-  /* ... */
+  // Iterator wird um eins nach vorne versetzt, aber alte Wert noch zurückgegeben !!
+  ListIterator<T> operator++(int) { // when int ---//POSTINCREMENT !! 
+  	ListIterator<T> help = *this;  // save the old IT
+    ++(*this);  // increment 
+  	return help; // returns the old IT
+  }  
+
+  // Vergleich, ob beide Nodes identisch - true wenn gleich
   bool operator==(ListIterator<T> const& x) const {
-  	//not implemented yet
+  	return (node == x.node);
   }
 
-  /* ... */
+  /// Vergleich, ob beide Nodes nicht identisch - true wenn ungleich
   bool operator!=(ListIterator<T> const& x) const {
-  	//not implemented yet
+  	return (node != x.node);
   }
 
-  /* ... */
+ 
   ListIterator<T> next() const {  // gibt nächsten Node zurück
-    if (nullptr != node) {
+    if (nullptr != node) {        // sofern nicht selbst schon der nullptr
       return ListIterator{node->next};
+    } else {
+      return ListIterator{nullptr};
+    }
+  }
+
+  ListIterator<T> prev() const {  // gibt vorherigen Node zurück
+    if (nullptr != node) {        // sofern nicht selbst schon der nullptr
+      return ListIterator{node->prev};
     } else {
       return ListIterator{nullptr};
     }
