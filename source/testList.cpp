@@ -1,10 +1,11 @@
 // TestList.cpp (Programmiersprachen Aufgabe 4)
 
 #define CATCH_CONFIG_RUNNER
+#include "circle.hpp"
+#include "list.hpp"
 #include <catch.hpp>
 #include <cmath>
 #include <algorithm>
-#include "list.hpp"
 #include <iostream>
 
 
@@ -96,6 +97,50 @@ list.push_front(1);
 list.~List();
 REQUIRE (list.empty());
 }
+
+/*
+TEST_CASE ("TestCase_6    test Iterator and list with circle-Obj.    ", "[aufg4.5]"){
+Circle c_1;
+Circle c_2;
+Circle c_3;
+Circle c_4;
+List<Circle> circle_list ;
+auto c_it = circle_list.begin();
+std::cout << "Die Size der Liste ist : " << circle_list.size();
+REQUIRE (c_it == nullptr); // Abfrage des Iterators bei leerer Liste moeglich ??
+
+circle_list.push_back(c_1);
+circle_list.push_back(c_2);
+circle_list.push_back(c_3);
+circle_list.push_back(c_4);
+
+//auto c_it = circle_list.begin();
+//std :: cout << "Der Radius des 1. Circles in der Liste ist: ";
+//<< c_it->.radius_ << std::endl;     // statt nethodenaufruf getter auch .attribut zugriff moeglich ??
+
+}
+*/
+
+
+TEST_CASE (" should be an empty range after default construction ","[ iterators aufg 4.6  1]"){
+
+List <int> list;
+auto b = list.begin();
+auto e = list.end();
+REQUIRE (b == e);
+}
+
+
+TEST_CASE (" provide access to the first element with begin ", "[ iterators  aufg 4.6  2 ]")
+{
+List <int> list ;         //  SIGSEGV - Segmentation violation signal  ???
+list.push_front(42);
+REQUIRE (42 == *list.begin());
+}
+
+// TEST_CASE ...
+
+
 
 int main(int argc, char * argv[]) {
 

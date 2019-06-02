@@ -111,6 +111,7 @@ class List {
     first_{nullptr}, 
     last_{nullptr} {} 
 
+
     /* ... */
     //TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 4.8)
 
@@ -136,22 +137,29 @@ class List {
     ~List() {
   	   clear();
     }
+    iterator begin() const {
+      return iterator(first_);
+    }
+    iterator end() const {
+      return iterator();
+    }
 
-  	/* ... */
+    /*
+  	   ...
     ListIterator<T> begin() {
     	assert(!empty());
   		////not implemented yet
     	return ListIterator<T>{};
     }
 
-  	/* ... */
+  	  ....
     ListIterator<T> end() {
     	assert(!empty());
 
   		////not implemented yet
     	return ListIterator<T>{};
     }
-
+    */
     /* ... */
     void clear() {
   		while (size() != 0){
