@@ -16,8 +16,8 @@ public:
     Circle(Vec2 const& ctr, float r, Color const& rgb, std::string const& na_);
     Circle(Vec2 const& ctr, float r, Color const& rgb,float thickness );
     float circumference() const; 
-    void draw(Window const& w)const; 
-    void draw(Window const& win, float thickness) const;
+    //void draw(Window const& w)const; 
+    //void draw(Window const& win, float thickness) const;
     bool is_inside(Vec2 const& p) const;
     std::ostream& print(std::ostream& o) const;   
     

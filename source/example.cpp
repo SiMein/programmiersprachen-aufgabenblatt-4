@@ -23,10 +23,10 @@ int main(int argc, char* argv[])
     Color c_2 = {0.8f, 0.2f, 0.3f};
 
     Rectangle r_2{v_1,v_2,c_1};
-    r_2.draw(win);
+    //r_2.draw(win);
 
     Circle cir_2{v_1,10.0f,c_2};  // (Param.-center,radius,color)
-    cir_2.draw(win);
+    //cir_2.draw(win);
 
 
     Vec2 v_5 = {600.0f, 200.0f};  // draw with custum-line-thickness
@@ -36,10 +36,10 @@ int main(int argc, char* argv[])
 
              // error: no matching function for call to ‘Rectangle::Rectangle(<brace-enclosed initializer list>)’                      
     Rectangle r_4{v_5,v_1,c_5,20.0f};   //zusätzlicher wert für thickness am ende wird nicht richtig erkannt
-    r_4.draw(win);
+    //r_4.draw(win);
 
     Circle cir_3{v_5,20.0f,c_6,50.0f};  // (Param.-center,radius,color)
-    cir_3.draw(win);
+    //cir_3.draw(win);
 
 
 

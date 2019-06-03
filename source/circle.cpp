@@ -31,7 +31,7 @@ float Circle::circumference() const{
     return u;
 }
 
-
+/*
 void Circle::draw(Window const& w) const{
 
     Vec2 sp{center_.x, center_.y - radius_};  //startpoint 
@@ -54,7 +54,7 @@ void Circle::draw(Window const& w, float thickness) const{
         sp = np;  // Übergabe nächster Startpoint 
     }
 }
-
+*/
 bool Circle::is_inside(Vec2 const& p) const{
     Vec2 rv = p - center_;
     float distance_to_center = sqrt(pow(rv.x,2) + pow(rv.y,2));
