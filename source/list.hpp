@@ -138,7 +138,11 @@ class List {
   	   clear();
     }
     iterator begin() const {
-      return iterator(first_);
+      if (empty()) {
+        return iterator();
+      }else {
+      return iterator{first_};
+      }
     }
     iterator end() const {
       return iterator();

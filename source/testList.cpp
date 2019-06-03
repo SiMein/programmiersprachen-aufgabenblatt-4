@@ -98,7 +98,7 @@ list.~List();
 REQUIRE (list.empty());
 }
 
-/*
+
 TEST_CASE ("TestCase_6    test Iterator and list with circle-Obj.    ", "[aufg4.5]"){
 Circle c_1;
 Circle c_2;
@@ -106,7 +106,7 @@ Circle c_3;
 Circle c_4;
 List<Circle> circle_list ;
 auto c_it = circle_list.begin();
-std::cout << "Die Size der Liste ist : " << circle_list.size();
+std::cout << "Die Size der Liste ist : " << circle_list.size() << "      TestCase_6 \n";
 REQUIRE (c_it == nullptr); // Abfrage des Iterators bei leerer Liste moeglich ??
 
 circle_list.push_back(c_1);
@@ -119,7 +119,7 @@ circle_list.push_back(c_4);
 //<< c_it->.radius_ << std::endl;     // statt nethodenaufruf getter auch .attribut zugriff moeglich ??
 
 }
-*/
+
 
 
 TEST_CASE (" should be an empty range after default construction ","[ iterators aufg 4.6  1]"){
@@ -136,6 +136,10 @@ TEST_CASE (" provide access to the first element with begin ", "[ iterators  auf
 List <int> list ;         //  SIGSEGV - Segmentation violation signal  ???
 list.push_front(42);
 REQUIRE (42 == *list.begin());
+list.pop_back();
+std::cout << "Die Size der Liste ist : " << list.size() << "      aufg 4.6  2 \n";
+
+REQUIRE (list.end() == list.begin());
 }
 
 // TEST_CASE ...
