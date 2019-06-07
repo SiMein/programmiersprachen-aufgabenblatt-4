@@ -111,10 +111,16 @@ class List {
     first_{nullptr}, 
     last_{nullptr} {} 
 
-
-    /* ... */
-    //TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 4.8)
-
+    // Copy-Konstruktor using Deep-Copy semantics (Aufgabe 4.8)
+    List(List<T> const& in_List) :
+    size_{0},
+    first_{nullptr},
+    last_{nullptr} { 
+      for (ListIterator it = in_List.begin(); it != in_List.end(); ++it){
+        push_back(*it);
+      }
+    }
+   
   	/* ... */
     //TODO: Move-Konstruktor (Aufgabe 4.13)
 
@@ -129,8 +135,17 @@ class List {
 
   	// Vergleichsoperator speziell für Listenvergleich- true wenn gleich  (aufg 4.7)
     bool operator==(List<T>const& rhs) const{
-      return true;
-      //return(rhs.begin() == first_);
+      if(size() == 0 && rhs.size() == 0){
+        return true;
+      }
+      if(size() != rhs.size()){
+        return false;
+      }
+      ListIterator help1 = rhs.begin();
+      ListIterator help2 = first_ ;   //  Hier mit auto als Zuweisung Fehler --Warum ????
+      if (*help1 == *help2){
+        return true;
+      }
     }
 
   	// Vergleichsoperator speziell für Listenvergleich- true wenn ungleich (aufg 4.7)

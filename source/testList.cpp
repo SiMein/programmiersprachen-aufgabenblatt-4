@@ -144,22 +144,38 @@ REQUIRE (list.end() == list.begin());
 
 
 TEST_CASE (" memberfunction  ==  !=   ", "[ iterators  aufg 4.7   ]"){
-List<int> list1;        
-list1.push_front(42);
-List<int> list1b{list1};
+List<int> list1a; 
+List<int> list1b;
 
-//REQUIRE (list1==list1b);
+REQUIRE (list1a==list1b);  // when both lists empty, also true  ==
 
-List<int> list2;
-list2.push_front(98);
-list2.push_back(99);
+list1a.push_back(66);
 
-std::cout << "\nDie Size der list1 ist : " << list1.size() << "      aufg 4.7   \n";
-std::cout << "Die Size der list2 ist : " << list2.size() << "      aufg 4.7   \n";
+REQUIRE (!(list1a==list1b)); // when list have different sizes  
+
+list1b.push_back(66);
+
+REQUIRE (list1a==list1b);  // when same elements(values) in both lists, also true with ==
+
+//list1a.push_back(67);
+//list1b.push_back(68);
+
+std::cout << "\nDie Size der list1 ist : " << list1a.size() << "      aufg 4.7   \n";
+std::cout << "Die Size der list2 ist : " << list1b.size() << "      aufg 4.7   \n";
 
 //REQUIRE (list.end() == list.begin());
 }
-
+/* 
+TEST_CASE (" copy constructor   aufg. 4.8", "[ constructor  aufg 4.8 ]"){
+List<int> list ;
+list.push_front(1);
+list.push_front(2);
+list.push_front(3);
+list.push_front(4);
+List<int> list2{list};
+REQUIRE (list == list2);
+}
+*/
 
 
 int main(int argc, char * argv[]) {
