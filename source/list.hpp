@@ -127,11 +127,15 @@ class List {
   	/* ... */
     //TODO: Assignment operator (Aufgabe 4.12)
 
-  	/* ... */
-    //TODO: operator== (Aufgabe 4.7)
+  	// Vergleichsoperator speziell für Listenvergleich- true wenn gleich  (aufg 4.7)
+    bool operator==(List<T>const& rhs) const{
+      return true;
+      //return(rhs.begin() == first_);
+    }
 
-  	/* ... */
-    //TODO: operator!= (Aufgabe 4.7)
+  	// Vergleichsoperator speziell für Listenvergleich- true wenn ungleich (aufg 4.7)
+    //bool operator!=(List<T>const& rhs) const;
+    //  return!(rhs.==)
 
   	/* ... */
     ~List() {

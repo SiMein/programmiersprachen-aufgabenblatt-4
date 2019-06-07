@@ -131,7 +131,7 @@ REQUIRE (b == e);
 }
 
 
-TEST_CASE (" provide access to the first element with begin ", "[ iterators  aufg 4.6  2 ]")
+TEST_CASE (" provide access to the first element with begin aufg 4.6.", "[ iterators  aufg 4.6  2 ]")
 {
 List <int> list ;         //  SIGSEGV - Segmentation violation signal  ???
 list.push_front(42);
@@ -142,7 +142,23 @@ std::cout << "Die Size der Liste ist : " << list.size() << "      aufg 4.6  2 \n
 REQUIRE (list.end() == list.begin());
 }
 
-// TEST_CASE ...
+
+TEST_CASE (" memberfunction  ==  !=   ", "[ iterators  aufg 4.7   ]"){
+List<int> list1;        
+list1.push_front(42);
+List<int> list1b{list1};
+
+//REQUIRE (list1==list1b);
+
+List<int> list2;
+list2.push_front(98);
+list2.push_back(99);
+
+std::cout << "\nDie Size der list1 ist : " << list1.size() << "      aufg 4.7   \n";
+std::cout << "Die Size der list2 ist : " << list2.size() << "      aufg 4.7   \n";
+
+//REQUIRE (list.end() == list.begin());
+}
 
 
 
