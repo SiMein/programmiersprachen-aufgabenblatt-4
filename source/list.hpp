@@ -143,15 +143,37 @@ class List {
       }
       ListIterator help1 = rhs.begin();
       ListIterator help2 = first_ ;   //  Hier mit auto als Zuweisung Fehler --Warum ????
-      if (*help1 == *help2){
+
+      while(help1 != nullptr){
+        if (*help1 != *help2){
+          return false;
+        }
+        help1 = help1.next() ;
+        help2 = help2.next();
+      } 
+      return true;
+    }
+    
+    bool operator!=(List<T>const& rhs) const{  // hier vllt auch elegantere Loesung 
+      if(size() == 0 && rhs.size() == 0){     //mit weiterleitung der parameter zur == methode
+        return false;                          // dann einfach nur negieren
+      }
+      if(size() != rhs.size()){
         return true;
       }
-    }
+      ListIterator help1 = rhs.begin();
+      ListIterator help2 = first_ ;  
 
-  	// Vergleichsoperator speziell für Listenvergleich- true wenn ungleich (aufg 4.7)
-    //bool operator!=(List<T>const& rhs) const;
-    //  return!(rhs.==)
-
+      while(help1 != nullptr){
+        if (*help1 != *help2){
+          return true;
+        }
+        help1 = help1.next() ;
+        help2 = help2.next();
+      } 
+      return false;
+    }    
+  
   	/* ... */
     ~List() {
   	   clear();
