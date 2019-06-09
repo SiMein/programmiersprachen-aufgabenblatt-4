@@ -167,15 +167,28 @@ std::cout << "Die Size der list2 ist : " << list1b.size() << "      aufg 4.7   \
 
 }
 
-TEST_CASE ("TestCase_8      copy constructor          ", "[ constructor  aufg 4.8 ]"){
-List<int> list ;
-list.push_front(1);
+TEST_CASE ("TestCase_9      insert-function          ", "[ insert-function  aufg 4.9 ]"){
+List<int> list1;
+List<int> list2;                              // ERSTES element
+REQUIRE(5 == *list2.insert(list1.begin(),5)); // Einuegen an erster Stelle wenn list leer, iterator beliegig-hier mit begin
+list2.push_back(88);  // ZWEITES element hinten einfuegen ,, derefenzierter zurückgegebenr iterator ist der eingefuegte int
+REQUIRE(list2.size()==2);
+
+List<int> list3;
+list3.push_front(3);
+list3.push_front(4);
+list3.push_front(5);
+REQUIRE(88 == *list2.insert(list3.end(),22));  // DRITTES elemt,    Tatsaechliches einfuegen am ende der Liste
+REQUIRE(list3.size()==3);
+
+/* 
 list.push_front(2);
 list.push_front(3);
 list.push_front(4);
 List<int> list2{list};
 REQUIRE (list == list2);
 std::cout << std::endl;
+*/
 }
 
 

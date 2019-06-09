@@ -153,6 +153,11 @@ class List {
       } 
       return true;
     }
+    /*        warum geht das nicht ?  push_fronst in insert methode lässt sich auch ohne x. aufrufen ?!
+    bool operator!=(List<T>const& rhs) const{ 
+      return(!(==rhs));
+    }
+    */
     
     bool operator!=(List<T>const& rhs) const{  // hier vllt auch elegantere Loesung 
       if(size() == 0 && rhs.size() == 0){     //mit weiterleitung der parameter zur == methode
@@ -172,7 +177,8 @@ class List {
         help2 = help2.next();
       } 
       return false;
-    }    
+    } 
+      
   
   	/* ... */
     ~List() {
@@ -212,8 +218,25 @@ class List {
       }
     }
 
-    /* ... */
     //TODO: member function insert
+    ListIterator<T> insert(ListIterator<T> const& in_it, T const& in_value){
+        if(size() == 0){
+          //first_ = in_it;
+          push_front(in_value);  // in List deklaration auch aufruf von membermethoden direkt mgl. ohne Instanz bzw punkt davor
+          last_ = first_;
+          //size_++;
+          ListNode<T>* outIt = first_;
+          return first_;
+        }
+        if (in_it == end()) {
+          push_back(in_value);
+          return last_->prev;
+        }
+        if (in_it == begin()) {
+          push_front(in_value);
+          return first_;
+        }      
+    }
   	/* ... */
     //TODO: member function reverse
 
