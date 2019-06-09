@@ -220,25 +220,35 @@ class List {
 
     //TODO: member function insert
     ListIterator<T> insert(ListIterator<T> const& in_it, T const& in_value){
-        if(size() == 0){
-          //first_ = in_it;
-          push_front(in_value);  // in List deklaration auch aufruf von membermethoden direkt mgl. ohne Instanz bzw punkt davor
-          last_ = first_;
-          //size_++;
-          ListNode<T>* outIt = first_;
-          return first_;
-        }
-        if (in_it == end()) {
-          push_back(in_value);
-          return last_->prev;
-        }
-        if (in_it == begin()) {
-          push_front(in_value);
-          return first_;
-        }      
+      if((size() == 0)){
+        push_front(in_value);  // in List deklaration auch aufruf von membermethoden direkt mgl. ohne Instanz bzw punkt davor ??
+        last_ = first_;
+        ListNode<T>* outIt = first_;
+        return first_;
+      }
+      if (in_it == end()) {
+        push_back(in_value);
+        return last_->prev;
+      }
+      if (in_it == begin()) {
+        push_front(in_value);
+        return first_;
+      } 
+      /* 
+      // auto helper = in_it;
+                        // neuer Knoten mit parametern (wert, vorgaenger, nachfolger) // also genau vorm iterator einfuegen
+      ListNode<T>* n_insert = new ListNode<T>{in_value, in_it->prev, in_it};
+      in_it.prev().next() = n_insert;          // Vorgänger zeigt vorwaerts auf neues element
+      in_it.prev() = n_insert;                // nachfolger zeigt rueckwaerts auf neues element
+      ++size_;  
+      /home/simon/Documents/CPP/programmiersprachen-aufgabenblatt-4/source/list.hpp:239:64: error:
+      request for member ‘prev’ in ‘*(& in_it)->ListIterator<int>::operator->()’, which is of non-class type ‘int’
+      ListNode<T>* n_insert = new ListNode<T>{in_value, in_it->prev, in_it};
+      */                                                  
     }
-  	/* ... */
-    //TODO: member function reverse
+
+  	/* Memberreverse dreht liste um durch vertauschung der next und prevzeiger*/
+    void reverse(){}
 
     // Ein Element wird am Anfang der Liste eingefuegt
     void push_front(T const& element) {

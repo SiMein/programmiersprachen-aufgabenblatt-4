@@ -181,6 +181,9 @@ list3.push_front(5);
 REQUIRE(88 == *list2.insert(list3.end(),22));  // DRITTES elemt,    Tatsaechliches einfuegen am ende der Liste
 REQUIRE(list3.size()==3);
 
+
+auto iter02 = list2.begin().next();
+
 /* 
 list.push_front(2);
 list.push_front(3);
