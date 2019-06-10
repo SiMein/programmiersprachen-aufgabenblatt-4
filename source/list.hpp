@@ -252,15 +252,14 @@ class List {
       //last_ = first_;
       auto one = first_->prev;  // one als neues element anlegen ??
       auto two = first_;
-      /* 
-      //while (two != nullptr){
-        one = two->prev;
-        two->prev = two->next;
-        two->next = one;
-        two = two->prev;
-      //}
-      //first_ = one;
-      */
+       
+      while (two != nullptr){   // Abbruch wenn listenende erreicht
+        one = two->prev;        // init. one vorm first elemt //  bzw um eins weiter rücken
+        two->prev = two->next;  // Zeiger tausch auch 
+        two->next = one;        //  -""_
+        two = two->prev;        // weiter zum nächsten element bereits zeiger getausch, daher prev
+      }
+      first_ = one; // one steht auf altem last , wird nun first
     }
 
     // Ein Element wird am Anfang der Liste eingefuegt
