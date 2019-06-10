@@ -248,7 +248,20 @@ class List {
     }
 
   	/* Memberreverse dreht liste um durch vertauschung der next und prevzeiger*/
-    void reverse(){}
+    void reverse(){
+      //last_ = first_;
+      auto one = first_->prev;  // one als neues element anlegen ??
+      auto two = first_;
+      /* 
+      //while (two != nullptr){
+        one = two->prev;
+        two->prev = two->next;
+        two->next = one;
+        two = two->prev;
+      //}
+      //first_ = one;
+      */
+    }
 
     // Ein Element wird am Anfang der Liste eingefuegt
     void push_front(T const& element) {

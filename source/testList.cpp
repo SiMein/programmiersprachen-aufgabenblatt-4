@@ -181,17 +181,21 @@ list3.push_front(5);
 REQUIRE(88 == *list2.insert(list3.end(),22));  // DRITTES elemt,    Tatsaechliches einfuegen am ende der Liste
 REQUIRE(list3.size()==3);
 
-
 auto iter02 = list2.begin().next();
+}
 
-/* 
-list.push_front(2);
-list.push_front(3);
-list.push_front(4);
-List<int> list2{list};
-REQUIRE (list == list2);
-std::cout << std::endl;
+TEST_CASE ("TestCase_10      reverse-function  free and member        ", "[ reverse-function  aufg 4.10 ]"){ 
+List<int> listr; 
+/*
+listr.push_front(24);
+listr.push_front(25);
+listr.push_front(26);
+listr.push_front(27);
 */
+listr.reverse();
+//REQUIRE (list == list2);
+std::cout << std::endl;
+
 }
 
 
