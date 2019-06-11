@@ -166,6 +166,20 @@ TEST_CASE ("TestCase_7 memberfunction  ==  !=   ", "[ iterators  aufg 4.7   ]"){
   std::cout << "Die Size der list2 ist : " << list1b.size() << "      aufg 4.7   \n";
 }
 
+
+TEST_CASE ("TestCase_8   copy constructor", "[constructor  aufg 4.8  ]")
+{
+    List<int> list; 
+    list.push_front(1);
+    list.push_front(2);
+    list.push_front(3);
+    list.push_front(4);
+    List<int> list2{list};
+    REQUIRE(list == list2);
+    REQUIRE(list.size() == list2.size());
+}
+
+
 TEST_CASE ("TestCase_9      insert-function          ", "[ insert-function  aufg 4.9 ]"){
   List<int> list1;
   List<int> list2;                              // ERSTES element
@@ -179,8 +193,15 @@ TEST_CASE ("TestCase_9      insert-function          ", "[ insert-function  aufg
   list3.push_front(5);
   REQUIRE(88 == *list2.insert(list3.end(),22));  // DRITTES elemt,    Tatsaechliches einfuegen am ende der Liste
   REQUIRE(list3.size()==3);
+/*
+  List<int> list4;
+  list4.push_front(333);
+  list4.push_front(444);
 
-  auto iter02 = list2.begin().next();
+  ListIterator iter02 = list3.begin();
+  REQUIRE(22 == *list2.insert(iter02,666));  // VIERTES elemt,  mit irgendwo/beliebigen  Iterator
+  REQUIRE(list3.size()==4);
+*/
 }
 /* 
 TEST_CASE ("TestCase_10      reverse-function  free and member        ", "[ reverse-function  aufg 4.10 ]"){ 
@@ -208,9 +229,14 @@ TEST_CASE ("TestCase_11  copy own list into vector    ", "[ constructor  aufg 4.
 
   std::copy(from_list.begin(), from_list.end(), std::back_inserter(to_vector));
 
-  std::cout << "\nfrom_vectors size : " << to_vector.size() << "to_vector contains: ";
+  std::cout << "\nAufg 4.11    from_vectors size : " << to_vector.size() << "   to_vector contains: \n";
 
   REQUIRE(4 == to_vector.size());
+
+  REQUIRE(4 == to_vector.at(0));
+  REQUIRE(3 == to_vector.at(1));
+  REQUIRE(2 == to_vector.at(2));
+  REQUIRE(1 == to_vector.at(3));
  
   std::copy(to_vector.begin(), to_vector.end(), std::ostream_iterator<int>(std::cout, " "));
   std::cout << '\n';

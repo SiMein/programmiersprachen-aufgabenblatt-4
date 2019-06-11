@@ -153,12 +153,12 @@ class List {
       } 
       return true;
     }
-    /*        warum geht das nicht ?  push_fronst in insert methode lässt sich auch ohne x. aufrufen ?!
-    bool operator!=(List<T>const& rhs) const{ 
-      return(!(==rhs));
+    //   elegante Version --Liste, auf der der != operator aufgerufen wird, das geht mit dem *this-Pointer. 
+    bool operator!=(List<T>const& rhs) const{   // vgl mit Input parameter /liste - dann result negieren 
+      return(!(*this==rhs));
     }
-    */
     
+    /*
     bool operator!=(List<T>const& rhs) const{  // hier vllt auch elegantere Loesung 
       if(size() == 0 && rhs.size() == 0){     //mit weiterleitung der parameter zur == methode
         return false;                          // dann einfach nur negieren
@@ -178,7 +178,7 @@ class List {
       } 
       return false;
     } 
-      
+    */ 
   
   	/* ... */
     ~List() {
@@ -234,13 +234,18 @@ class List {
         push_front(in_value);
         return first_;
       } 
-      /* 
-      // auto helper = in_it;
+      
+      
+      ListNode<T>* helper = in_it.node; // zunächst nodes aus dem iterator rausgefiltert
+      auto helper_pre = helper->prev ;  // auto hier ebenfalls ListNode 
                         // neuer Knoten mit parametern (wert, vorgaenger, nachfolger) // also genau vorm iterator einfuegen
-      ListNode<T>* n_insert = new ListNode<T>{in_value, in_it->prev, in_it};
-      in_it.prev().next() = n_insert;          // Vorgänger zeigt vorwaerts auf neues element
-      in_it.prev() = n_insert;                // nachfolger zeigt rueckwaerts auf neues element
-      ++size_;  
+      ListNode<T>* n_insert = new ListNode<T>{in_value, helper_pre, helper};
+      helper_pre->next = n_insert;          // Vorgänger zeigt vorwaerts auf neues element
+      helper->prev = n_insert;                // nachfolger zeigt rueckwaerts auf neues element
+      ++size_; 
+      return n_insert; 
+
+      /* 
       /home/simon/Documents/CPP/programmiersprachen-aufgabenblatt-4/source/list.hpp:239:64: error:
       request for member ‘prev’ in ‘*(& in_it)->ListIterator<int>::operator->()’, which is of non-class type ‘int’
       ListNode<T>* n_insert = new ListNode<T>{in_value, in_it->prev, in_it};
