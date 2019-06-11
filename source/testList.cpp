@@ -203,8 +203,9 @@ TEST_CASE ("TestCase_9      insert-function          ", "[ insert-function  aufg
   REQUIRE(list3.size()==4);
 */
 }
-/* 
+
 TEST_CASE ("TestCase_10      reverse-function  free and member        ", "[ reverse-function  aufg 4.10 ]"){ 
+  /*
   List<int> listr; 
   
   listr.push_front(24);
@@ -215,8 +216,9 @@ TEST_CASE ("TestCase_10      reverse-function  free and member        ", "[ reve
   listr.reverse();
   //REQUIRE (list == list2);
   std::cout << std::endl;
+  */
 }
-*/
+
 TEST_CASE ("TestCase_11  copy own list into vector    ", "[ constructor  aufg 4.11 ]"){
 
   List<int> from_list ;
@@ -276,7 +278,20 @@ TEST_CASE ("TestCase_14  list konkat. and more   ", "[ constructor  aufg 4.14 ]"
   i3++;
   REQUIRE (100 == *i3);
   i3++;
+
   List<int> int_list_empty{};
+  REQUIRE(0 == int_list_empty.size());  // funktioniert auch mit leerem {}-konstr
+
+
+  
+  List<int> konka_list = List<int>{1,2} + List<int>{5,6};
+  REQUIRE(4 == konka_list.size());
+  List<int> kuno{1,2,5,6};
+  REQUIRE(konka_list==kuno);
+
+  auto l = List <int >{1 , 2, 3, 4, 5} + List <int >{6 , 7, 8, 9};
+  REQUIRE(9 == l.size());
+  
 }
 
 

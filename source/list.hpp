@@ -384,9 +384,27 @@ class List {
 
 /* ... */
 //TODO: Freie Funktion reverse
+//template <typename T>
+auto reverse(auto const& list)
+{
+    auto reversed_list = list; 
 
-/* ... */
-//TODO: Freie Funktion operator+ (4.14)
+    for (auto p = list.begin(); p != nullptr; ++p)
+    {
+        reversed_list.push_front(*p);
+    }
+    return reversed_list; 
+}
+
+//Freie Funktion operator+ (4.14)
+auto operator+( auto const& li1, auto const& li2){   //  Freie Funktion (in .cpp mit Konstr)
+
+  auto list5 = li1;
+    for(auto& ita : li2){
+      list5.push_back(ita);
+    }
+  return list5;
+}
 
 #endif // # define BUW_LIST_HPP
 
