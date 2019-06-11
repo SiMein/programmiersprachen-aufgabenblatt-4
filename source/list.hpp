@@ -123,6 +123,15 @@ class List {
    
   	/* ... */
     //TODO: Move-Konstruktor (Aufgabe 4.13)
+    List(List<T>&& in_list):
+      size_{in_list.size_}, // der in klammern uebergebenen listwerden die daten entnommen
+      first_{in_list.first_},   //  und auf die list auf d linken seite im aufruf uebertragen  
+      last_{in_list.last_}
+      {
+      in_list.size_= 0;     // danach wird die alte liste zurueckgestzt
+      in_list.first_= nullptr;
+      in_list.last_= nullptr; 
+    }
 
     //TODO: Initializer-List Konstruktor (4.14)
   	/* ... */
@@ -159,9 +168,9 @@ class List {
     }
     
     /*
-    bool operator!=(List<T>const& rhs) const{  // hier vllt auch elegantere Loesung 
-      if(size() == 0 && rhs.size() == 0){     //mit weiterleitung der parameter zur == methode
-        return false;                          // dann einfach nur negieren
+    bool operator!=(List<T>const& rhs) const{  // negierte == Loesung als vollcodecopy 
+      if(size() == 0 && rhs.size() == 0){    
+        return false;                         
       }
       if(size() != rhs.size()){
         return true;
@@ -180,7 +189,9 @@ class List {
     } 
     */ 
   
-  	/* ... */
+  	/* Dekonstruktor entfern alle elemente mittels clear-methode*/
+    // direkter aufruf mgl, oder eben meist als" garbage-collector 
+    // als letztes ausgeführt bevor element geschlossen wird 
     ~List() {
   	   clear();
     }
@@ -195,14 +206,12 @@ class List {
       return iterator();
     }
 
-    /*
-  	   ...
+    /*  ...
     ListIterator<T> begin() {
     	assert(!empty());
   		////not implemented yet
     	return ListIterator<T>{};
     }
-
   	  ....
     ListIterator<T> end() {
     	assert(!empty());
@@ -211,7 +220,8 @@ class List {
     	return ListIterator<T>{};
     }
     */
-    /* ... */
+
+    /* alle entfern elemente der reihe nach */ 
     void clear() {
   		while (size() != 0){
         pop_front();

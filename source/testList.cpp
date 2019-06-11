@@ -250,17 +250,15 @@ TEST_CASE ("TestCase_12  implem. zuweisungsoperator wie in vorlesung vorgest.  "
 
 TEST_CASE ("TestCase_13  move constructor   ", "[ constructor  aufg 4.13 ]"){
 
-  /*
   List<int> list ;
   list.push_front(1);
   list.push_front(2);
   list.push_front(3);
   list.push_front(4);
-  List<int> list2 = std::move(list);
+  List<int> list2 = std::move(list);  // rhs wird ubertragen auf lhs, kennzeichnung move intern mit && 
   REQUIRE(0 == list.size ());
   REQUIRE(list.empty());
   REQUIRE(4 == list2.size ());
-  */
 }
 
 TEST_CASE ("TestCase_14  list konkat. and more   ", "[ constructor  aufg 4.14 ]"){
