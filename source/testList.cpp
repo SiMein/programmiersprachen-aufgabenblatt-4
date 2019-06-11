@@ -262,6 +262,21 @@ TEST_CASE ("TestCase_13  move constructor   ", "[ constructor  aufg 4.13 ]"){
 }
 
 TEST_CASE ("TestCase_14  list konkat. and more   ", "[ constructor  aufg 4.14 ]"){
+
+  List<int> int_list{9,5,38,100};
+ 
+  REQUIRE(4 == int_list.size());
+
+  ListIterator i3 = int_list.begin();  // eigenen Iterator erstellen, beginnend auf erstem element
+  REQUIRE (9 == *i3);
+  i3++;               // hier mal manuelles weiterschalten d Iterators mit ++operator getestet
+  REQUIRE (5 == *i3);
+  i3++;
+  REQUIRE (38 == *i3);
+  i3++;
+  REQUIRE (100 == *i3);
+  i3++;
+  List<int> int_list_empty{};
 }
 
 

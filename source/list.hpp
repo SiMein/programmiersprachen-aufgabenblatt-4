@@ -112,7 +112,7 @@ class List {
     last_{nullptr} {} 
 
     // Copy-Konstruktor using Deep-Copy semantics (Aufgabe 4.8)
-    List(List<T> const& in_List) :
+    List(List<T> const& in_List):
     size_{0},
     first_{nullptr},
     last_{nullptr} { 
@@ -121,8 +121,7 @@ class List {
       }
     }
    
-  	/* ... */
-    //TODO: Move-Konstruktor (Aufgabe 4.13)
+    //Move-Konstruktor (Aufgabe 4.13)
     List(List<T>&& in_list):
       size_{in_list.size_}, // der in klammern uebergebenen listwerden die daten entnommen
       first_{in_list.first_},   //  und auf die list auf d linken seite im aufruf uebertragen  
@@ -132,11 +131,13 @@ class List {
       in_list.first_= nullptr;
       in_list.last_= nullptr; 
     }
+   
+    // Initializer-List Konstruktor (4.14)
 
-    //TODO: Initializer-List Konstruktor (4.14)
-  	/* ... */
     List(std::initializer_list<T> ini_list) {
-  		//not implemented yet
+      for(auto& n : ini_list){
+        push_back(n);
+      }
     }
 
   	/* ... */
