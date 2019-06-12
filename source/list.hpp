@@ -382,18 +382,17 @@ class List {
     ListNode<T>* last_ = nullptr;   // aehnlich aber nicht identisch mit unsigned int
 };
 
-/* ... */
-//TODO: Freie Funktion reverse
-//template <typename T>
-auto reverse(auto const& list)
-{
-    auto reversed_list = list; 
 
-    for (auto p = list.begin(); p != nullptr; ++p)
-    {
-        reversed_list.push_front(*p);
+//Freie Funktion reverse
+template <typename T>
+List<T> reverse(List<T> const& li)
+{
+    List<T> rev_li; 
+
+    for (auto xx : li){
+        rev_li.push_front(xx);
     }
-    return reversed_list; 
+    return rev_li; 
 }
 
 //Freie Funktion operator+ (4.14)

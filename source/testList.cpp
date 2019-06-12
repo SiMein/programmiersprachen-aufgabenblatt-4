@@ -217,6 +217,32 @@ TEST_CASE ("TestCase_10      reverse-function  free and member        ", "[ reve
   //REQUIRE (list == list2);
   std::cout << std::endl;
   */
+  List<int> list_free; 
+  
+  list_free.push_back(524);
+  list_free.push_back(525);
+  list_free.push_back(526);
+  list_free.push_back(527);
+
+  List<int> list_free_rev = reverse(list_free);
+  REQUIRE(527 == *list_free_rev.begin());
+  auto xyz = list_free_rev.begin();
+  REQUIRE(527 == *xyz);     //Einzelpruefung
+  xyz++;
+  REQUIRE(526 == *xyz);
+  xyz++;
+  REQUIRE(525 == *xyz);
+  xyz++;
+  REQUIRE(524 == *xyz);
+
+  REQUIRE(527 == *list_free_rev.begin()); // Pruefung mit begin
+  //REQUIRE(524 == *list_free_rev.end()); // Pruefung mit end nicht möglich ?? Warum ??
+  std::cout << "aufg 4.10 free-fkt-reverse   list_free_rev enthält von begin to end folgende elemente : ";
+  for(auto ix : list_free_rev){
+    std::cout << (ix) << "  ";
+  }
+
+
 }
 
 TEST_CASE ("TestCase_11  copy own list into vector    ", "[ constructor  aufg 4.11 ]"){
