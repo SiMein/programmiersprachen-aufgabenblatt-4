@@ -115,12 +115,12 @@ TEST_CASE ("TestCase_6    test Iterator and list with circle-Obj.    ", "[aufg4.
   circle_list.push_back(c_3);
   circle_list.push_back(c_4);
 
-//auto c_it = circle_list.begin();
-//std :: cout << "Der Radius des 1. Circles in der Liste ist: ";
-//<< c_it->.radius_ << std::endl;     // statt nethodenaufruf getter auch .attribut zugriff moeglich ??
+  REQUIRE(1.0 == (*circle_list.begin()).radius_); 
 
+  auto itt = circle_list.begin();
+  itt++;
+  REQUIRE(1.0 == (*itt).radius_);
 }
-
 
 
 TEST_CASE (" should be an empty range after default construction ","[ iterators aufg 4.6  1]"){
@@ -133,7 +133,7 @@ TEST_CASE (" should be an empty range after default construction ","[ iterators 
 
 
 TEST_CASE (" provide access to the first element with begin aufg 4.6.", "[ iterators  aufg 4.6  2 ]"){
-  List <int> list ;         //  SIGSEGV - Segmentation violation signal  ???
+  List <int> list ;         
   list.push_front(42);
   REQUIRE (42 == *list.begin());
   list.pop_back();
@@ -205,18 +205,26 @@ TEST_CASE ("TestCase_9      insert-function          ", "[ insert-function  aufg
 }
 
 TEST_CASE ("TestCase_10      reverse-function  free and member        ", "[ reverse-function  aufg 4.10 ]"){ 
-  /*
-  List<int> listr; 
   
+  List<int> listr; 
+
+  List<int> list_bee{1,2,3,4};
+  ListIterator between = list_bee.begin();
+  between++;
+  REQUIRE(2 == *between);
+
   listr.push_front(24);
   listr.push_front(25);
   listr.push_front(26);
   listr.push_front(27);
   
-  listr.reverse();
-  //REQUIRE (list == list2);
+  //listr.reverse(between,5);
+
+  //List<int> list2{24,25,26,27};
+  //REQUIRE (listr == list2);
   std::cout << std::endl;
-  */
+  
+
   List<int> list_free; 
   
   list_free.push_back(524);
@@ -236,13 +244,11 @@ TEST_CASE ("TestCase_10      reverse-function  free and member        ", "[ reve
   REQUIRE(524 == *xyz);
 
   REQUIRE(527 == *list_free_rev.begin()); // Pruefung mit begin
-  //REQUIRE(524 == *list_free_rev.end()); // Pruefung mit end nicht möglich ?? Warum ??
+  //REQUIRE(524 == *list_free_rev.end()); // Pruefung mit end nicht möglich ?? Warum --zeigt bereits hinter das letzte element
   std::cout << "aufg 4.10 free-fkt-reverse   list_free_rev enthält von begin to end folgende elemente : ";
   for(auto ix : list_free_rev){
     std::cout << (ix) << "  ";
   }
-
-
 }
 
 TEST_CASE ("TestCase_11  copy own list into vector    ", "[ constructor  aufg 4.11 ]"){
@@ -268,7 +274,6 @@ TEST_CASE ("TestCase_11  copy own list into vector    ", "[ constructor  aufg 4.
  
   std::copy(to_vector.begin(), to_vector.end(), std::ostream_iterator<int>(std::cout, " "));
   std::cout << '\n';
-
 }
 
 

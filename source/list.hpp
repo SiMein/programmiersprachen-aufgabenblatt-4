@@ -11,8 +11,8 @@ template <typename T>  // Schablone für die Liste, als Klasse -soll diverse Met
 class List;
 
 template <typename T>  // als struct, weil Inhalt nur ein paar Daten keine Fkt.
-struct ListNode {
-  T         value = T ();
+struct ListNode {       // aehnlich wie rekursiv, da wiederum auf andere Listnodes zeigend
+  T        value = T ();
   ListNode* prev = nullptr;
   ListNode* next = nullptr;
 };
@@ -30,7 +30,7 @@ struct ListIterator {  // deklarativen Region definiert ist, in der diese using-
     node{nullptr}{}
 
   ListIterator(ListNode<T>* n): 
-    node{n}{}  // Custom-konstr.
+    node{n}{}  // Custom-konstr.--init mit einem neuen uebergeben Listnode
 
   // Der Stern-operator soll Dereferenzieren, Zugriff auf d Objekt/Wert ,auf welches der Iterator zeigt//
   T&  operator*()  const {
@@ -85,7 +85,6 @@ struct ListIterator {  // deklarativen Region definiert ist, in der diese using-
     }
   }
 
-
   ListNode <T>* node = nullptr;
 };
 
@@ -101,10 +100,6 @@ class List {
     using const_reference = T const&;
     using iterator        = ListIterator<T>;
 
-    // not implemented yet
-    // do not forget about the initialiser list !
-  
-
     //Aufg 4.2 //Default Constructor
     List(): 
     size_{0}, 
@@ -114,10 +109,10 @@ class List {
     // Copy-Konstruktor using Deep-Copy semantics (Aufgabe 4.8)
     List(List<T> const& in_List):
     size_{0},
-    first_{nullptr},
-    last_{nullptr} { 
+    first_{nullptr},    
+    last_{nullptr} {      // elementweises uebertragen per loop
       for (ListIterator it = in_List.begin(); it != in_List.end(); ++it){
-        push_back(*it);
+        push_back(*it);  // push_back bezieht sich auf das objekt auf dem die methode aufgerufen wurde
       }
     }
    
@@ -140,7 +135,7 @@ class List {
       }
     }
 
-  	/* ... */
+  	// Zuweisungsoperator wie in vorlesung vorgestellt --worauf bezieht sich das ??
     //TODO: Assignment operator (Aufgabe 4.12)
 
   	// Vergleichsoperator speziell für Listenvergleich- true wenn gleich  (aufg 4.7)
@@ -207,22 +202,8 @@ class List {
       return iterator();
     }
 
-    /*  ...
-    ListIterator<T> begin() {
-    	assert(!empty());
-  		////not implemented yet
-    	return ListIterator<T>{};
-    }
-  	  ....
-    ListIterator<T> end() {
-    	assert(!empty());
 
-  		////not implemented yet
-    	return ListIterator<T>{};
-    }
-    */
-
-    /* alle entfern elemente der reihe nach */ 
+    /* alle elemente der reihe nach entfernen*/ 
     void clear() {
   		while (size() != 0){
         pop_front();
@@ -247,10 +228,10 @@ class List {
       } 
       
       
-      ListNode<T>* helper = in_it.node; // zunächst nodes aus dem iterator rausgefiltert
+      ListNode<T>*helper = in_it.node; // zunächst nodes aus dem iterator rausgefiltert
       auto helper_pre = helper->prev ;  // auto hier ebenfalls ListNode 
-                        // neuer Knoten mit parametern (wert, vorgaenger, nachfolger) // also genau vorm iterator einfuegen
-      ListNode<T>* n_insert = new ListNode<T>{in_value, helper_pre, helper};
+                        // neuer Knoten mit parametern (wert (T), vorgaenger listnode, nachfolger  listnode) 
+      ListNode<T>* n_insert = new ListNode<T>{in_value, helper_pre, helper};  // also genau vorm iterator einfuegen
       helper_pre->next = n_insert;          // Vorgänger zeigt vorwaerts auf neues element
       helper->prev = n_insert;                // nachfolger zeigt rueckwaerts auf neues element
       ++size_; 
@@ -349,10 +330,8 @@ class List {
 
   	  // Gibt das Frontelement zurueck per Referenz
     T& front() {
-    assert(!empty());  
-  	   	
-   	return first_->value; 
-    				
+      assert(!empty());  
+  	  return first_->value;     				
     }
 
       // Gibt das Backelement zurueck per Referenz
